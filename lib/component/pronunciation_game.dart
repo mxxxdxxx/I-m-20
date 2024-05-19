@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:speakiz/component/peaki_button.dart';
+import '../const/color.dart';
+import '../const/text.dart';
+import 'MyAppBar.dart';
+import 'MyDrawer.dart';
+
+class pronunciationExerciseScreen extends StatefulWidget {
+  const pronunciationExerciseScreen({super.key});
+
+  @override
+  State<pronunciationExerciseScreen> createState() =>
+      _pronunciationExerciseScreenState();
+}
+
+class _pronunciationExerciseScreenState
+    extends State<pronunciationExerciseScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: MyDrawer(),
+      appBar: MyAppBar(),
+      backgroundColor: backColor,
+      body: Column(
+        children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 250.0),
+              child: Text(
+                '조음훈련 화면입니다.',
+                style: ts1,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
