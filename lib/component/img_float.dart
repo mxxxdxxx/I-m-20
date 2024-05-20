@@ -63,7 +63,7 @@ class _FloatingImageState extends State<FloatingImage>
       left: MediaQuery.of(context).size.width * (0.5 + _animation.value.dx / 2),
       top: MediaQuery.of(context).size.height * (0.5 + _animation.value.dy / 2),
       child: Image.asset(
-        'assets/images/star.png',
+        'assets/images/cloud.png',
         width: widget.width,
         height: widget.height,
       ),

@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    '스피키즈에 오신걸 환영합니다.',
+                    '스피키즈에 오신 걸 환영합니다.',
                     style: ts1.copyWith(fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: 60),

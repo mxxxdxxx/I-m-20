@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:speakiz/component/peaki_button.dart';
-
 import '../const/color.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backColor,
       leading: Padding(
-        padding: const EdgeInsets.only(left: 10.0),
+        padding: const EdgeInsets.only(left: 8.0),
         child: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -19,7 +17,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 size: 50.0,
                 color: yellowColor,
               ),
-              onPressed: (){
+              onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             );
@@ -27,16 +25,18 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       actions: [
-        Container(
-          margin: EdgeInsets.only(right: 10.0, top: 10.0),
-          child: peakiButton(),
+        Transform.translate(
+          offset: Offset(-8, 4),
+          child: Container(
+            margin: EdgeInsets.only(right: 10.0),
+            child: peakiButton(),
+          ),
         ),
       ],
+      toolbarHeight: 80.0,
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
-
-
+  Size get preferredSize => Size.fromHeight(80.0);
 }

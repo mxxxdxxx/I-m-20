@@ -57,7 +57,7 @@ class _level2State extends State<level2> {
                         ),
 
                         SizedBox(width: 30.0,),
-                        Text('우리 아이의 언어 발달 수준은 ‘보통’ 단계입니다. \n\n 호흡훈련, 조음 훈련, AI아바타를 활용한 유창성 \n 훈련으로 아이의 말하기 실력이 향상될 수\n 있도록 꾸준한 지도 바랍니다. \n\n 위 설문은 훈련 30회차가 완료된 후 다시 한 번 \n 진행됩니다.',
+                        Text('우리 아이의 언어 발달 수준은  ‘보통’  단계입니다. \n\n 호흡훈련, 조음 훈련, AI아바타를 활용한 유창성 \n 훈련으로 아이의 말하기 실력이 향상될 수\n 있도록 꾸준한 지도 바랍니다. \n\n 위 설문은 훈련 30회차가 완료된 후 다시 한 번 \n 진행됩니다.',
                           textAlign: TextAlign.start,
                           style: ts1.copyWith(
                               fontWeight: FontWeight.w700

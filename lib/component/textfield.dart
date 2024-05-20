@@ -57,9 +57,9 @@ class _TextFieldScreenState extends State<TextFieldScreen> {
               );
             },
             child: Text('확인',
-            style: ts1w.copyWith(
-              fontWeight: FontWeight.w700
-            ),),
+              style: ts1w.copyWith(
+                  fontWeight: FontWeight.w700
+              ),),
             style: ElevatedButton.styleFrom(
               backgroundColor: navyColor,
               shape: RoundedRectangleBorder(

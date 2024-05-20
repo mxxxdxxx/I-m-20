@@ -1,11 +1,11 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import '../component/situation_choose.dart';
+import 'package:speakiz/component/pronun_fb.dart';
 import '../const/color.dart';
 import '../const/text.dart';
 import 'MyAppBar.dart';
 import 'MyDrawer.dart';
 import 'breath_fb.dart';
+import 'fluent_fb.dart';
 
 class feedback extends StatefulWidget {
   const feedback({super.key});
@@ -40,34 +40,35 @@ class _feedbackState extends State<feedback> {
                   width: 400.0,
                   height: 200.0,
                   decoration: BoxDecoration(
-                      color: ywColor,
-                      borderRadius: BorderRadius.circular(25),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          spreadRadius: 0,
-                          blurRadius: 1,
-                          offset: Offset(1, 1),
-                        ),
-                      ],
+                    color: ywColor,
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.25),
+                        spreadRadius: 0,
+                        blurRadius: 1,
+                        offset: Offset(1, 1),
+                      ),
+                    ],
                   ),
-                  child: TextButton(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => breathFB()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: navyColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
                       child: Text(
                         '호흡훈련',
-                        style: ts1w.copyWith(fontWeight: FontWeight.w700),
-                      )
+                        style: ts1.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20.0,
+                          color: navyColor,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -87,6 +88,25 @@ class _feedbackState extends State<feedback> {
                           offset: Offset(1, 1),
                         ),
                       ]),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => pronunFB()),
+                        );
+                      },
+                      child: Text(
+                        '조음훈련',
+                        style: ts1.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20.0,
+                          color: navyColor,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -94,7 +114,7 @@ class _feedbackState extends State<feedback> {
               height: 30.0,
             ),
             Container(
-              width: 800.0,
+              width: 830.0,
               height: 300.0,
               decoration: BoxDecoration(
                   color: ywColor,
@@ -107,6 +127,25 @@ class _feedbackState extends State<feedback> {
                       offset: Offset(1, 1),
                     ),
                   ]),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => fluentFB()),
+                    );
+                  },
+                  child: Text(
+                    '유창성훈련',
+                    style: ts1.copyWith(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.0,
+                      color: navyColor,
+                    ),
+                  ),
+                ),
+              ),
             )
           ],
         ),
