@@ -51,13 +51,10 @@ class _passwordSetState extends State<passwordSet> {
                     textAlign: TextAlign.center,
                     style: ts3.copyWith(fontWeight: FontWeight.w700,),
                   ),
-                  // SizedBox(
-                  //   height: 10.0,
-                  // ),
                   Text(
                     '아동의 훈련 피드백을 확인할 수 있는 학부모용으로 전환하려면 비밀번호가 필요합니다.',
                     textAlign: TextAlign.center,
-                    style: ts1.copyWith(fontSize: 15.0, fontWeight: FontWeight.w700, color: Colors.grey),
+                    style: ts1.copyWith(fontSize: 17.0, fontWeight: FontWeight.w700, color: Colors.grey),
                   ),
                   SizedBox(height: 5.0),
                   TextFormField(
@@ -99,9 +96,97 @@ class _passwordSetState extends State<passwordSet> {
                       if (_passwordController.text.isNotEmpty) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Situation()),
+                          MaterialPageRoute(builder: (context) => passwordCheck()),
                         );
                       }
+                    },
+                    child: Text(
+                      '확인',
+                      style: ts1w.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: navyColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      minimumSize: Size(180.0, 50.0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class passwordCheck extends StatefulWidget {
+  const passwordCheck({Key? key}) : super(key: key);
+
+  @override
+  _passwordCheckState createState() => _passwordCheckState();
+}
+
+class _passwordCheckState extends State<passwordCheck> {
+  bool _isPasswordFocused = false;
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: backColor,
+      body: Center(
+        child: Container(
+          width: 700.0,
+          height: 400.0,
+          decoration: BoxDecoration(
+            color: ywColor,
+            borderRadius: BorderRadius.circular(25),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                spreadRadius: 0,
+                blurRadius: 10,
+                offset: Offset(4, 4),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(
+                    Icons.lock,
+                    size: 60.0,
+                    color: navyColor,
+                  ),
+                  Text(
+                    '비밀번호가 다음과 같이 설정되었습니다.',
+                    textAlign: TextAlign.center,
+                    style: ts3.copyWith(fontWeight: FontWeight.w700,),
+                  ),
+
+                  SizedBox(height: 5.0),
+                  Text(
+                    '6666',
+                    textAlign: TextAlign.center,
+                    style: ts3.copyWith(fontWeight: FontWeight.w700,
+                    color: Colors.grey),
+                  ),
+
+                  SizedBox(height: 20.0),
+                  ElevatedButton(
+                    onPressed: () {
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Situation()),
+                        );
                     },
                     child: Text(
                       '확인',
