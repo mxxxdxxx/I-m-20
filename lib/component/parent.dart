@@ -3,52 +3,6 @@ import '../const/color.dart';
 import '../const/text.dart';
 import 'feedback.dart';
 
-class FilledTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final bool isPassword;
-  final bool isCentered;
-  final bool isFocused;
-  final ValueChanged<String>? onChanged;
-  final FormFieldValidator<String>? validator;
-  final VoidCallback? onTap;
-  final ValueChanged<String>? onSubmitted;
-
-  const FilledTextField({
-    required this.controller,
-    required this.hintText,
-    this.isPassword = false,
-    this.isCentered = false,
-    this.isFocused = false,
-    this.onChanged,
-    this.validator,
-    this.onTap,
-    this.onSubmitted,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: isPassword,
-      textAlign: isCentered ? TextAlign.center : TextAlign.start,
-      decoration: InputDecoration(
-        hintText: hintText,
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.0),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      onChanged: onChanged,
-      validator: validator,
-      onTap: onTap,
-      onFieldSubmitted: onSubmitted,
-    );
-  }
-}
-
 class parent extends StatefulWidget {
   const parent({Key? key}) : super(key: key);
 
@@ -96,16 +50,21 @@ class _parentState extends State<parent> {
                     style: ts3.copyWith(fontWeight: FontWeight.w700),
                   ),
                   SizedBox(height: 10.0),
-                  FilledTextField(
+                  TextFormField(
                     controller: _passwordController,
-                    hintText: '*  *  *  *',
-                    isPassword: true,
-                    isCentered: true,
-                    isFocused: _isPasswordFocused,
+                    obscureText: true,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: '*  *  *  *',
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
                     onChanged: (value) {
-                      setState(() {
-                        // Add your logic here
-                      });
+                      setState(() {});
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -118,7 +77,7 @@ class _parentState extends State<parent> {
                         _isPasswordFocused = true;
                       });
                     },
-                    onSubmitted: (_) {
+                    onFieldSubmitted: (_) {
                       setState(() {
                         _isPasswordFocused = false;
                       });
@@ -127,16 +86,19 @@ class _parentState extends State<parent> {
                   SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => feedback()),
-                      );
+                      if (_passwordController.text.isNotEmpty) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => feedback()),
+                        );
+                      }
                     },
                     child: Text(
                       '확인',
                       style: ts1w.copyWith(
-                          fontWeight: FontWeight.w700
-                      ),),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: navyColor,
                       shape: RoundedRectangleBorder(

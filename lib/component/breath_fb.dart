@@ -17,18 +17,17 @@ class _breathFBState extends State<breathFB> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
-      child: MyDrawer(),
-    ),
+          child: MyDrawer(),
+        ),
         appBar: MyAppBar(),
         backgroundColor: backColor,
         body: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 30.0,
+              Text(
+                '호흡훈련',
+                style: ts3.copyWith(fontWeight: FontWeight.w700),
               ),
-              Text('호흡훈련',
-                style: ts3.copyWith(fontWeight: FontWeight.w700),),
               SizedBox(
                 height: 30.0,
               ),
@@ -50,8 +49,10 @@ class _breathFBState extends State<breathFB> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('평균 지속시간',
-                            style: ts2,),
+                            Text(
+                              '평균 지속시간',
+                              style: ts2,
+                            ),
                             Container(
                               width: 600,
                               height: 30,
@@ -70,8 +71,10 @@ class _breathFBState extends State<breathFB> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('높낮이',
-                                style: ts2,),
+                              Text(
+                                '높낮이',
+                                style: ts2,
+                              ),
                               Container(
                                 width: 600,
                                 height: 30,
@@ -90,8 +93,10 @@ class _breathFBState extends State<breathFB> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('완성한 풍선의 개수',
-                              style: ts2,),
+                            Text(
+                              '완성한 풍선의 개수',
+                              style: ts2,
+                            ),
                             Container(
                               width: 600,
                               height: 30,
@@ -103,11 +108,9 @@ class _breathFBState extends State<breathFB> {
                     ),
                   ],
                 ),
-
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 }

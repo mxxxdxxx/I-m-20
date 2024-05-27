@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/peaki_button.dart';
 import '../const/color.dart';
 import '../const/text.dart';
 import 'MyAppBar.dart';

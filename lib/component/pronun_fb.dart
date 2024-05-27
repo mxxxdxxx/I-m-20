@@ -24,9 +24,6 @@ class _pronunFBState extends State<pronunFB> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 30.0,
-              ),
               Text('조음훈련',
                 style: ts3.copyWith(fontWeight: FontWeight.w700),),
               SizedBox(

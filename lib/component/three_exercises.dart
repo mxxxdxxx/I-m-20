@@ -26,29 +26,24 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
               width: 500.0,
               height: 100.0,
               decoration: BoxDecoration(
-                color: ywColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                  bottomLeft: Radius.circular(40),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    spreadRadius: 0,
-                    blurRadius: 5,
-                    offset: Offset(2, 2),
+                  color: ywColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                    bottomLeft: Radius.circular(40),
                   ),
-                ]
-              ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      spreadRadius: 0,
+                      blurRadius: 5,
+                      offset: Offset(2, 2),
+                    ),
+                  ]),
               child: Center(
-                child: Text(
-                  "오늘의 훈련을 시작해보아요.",
-                  textAlign: TextAlign.center,
-                  style: ts3.copyWith(
-                    fontWeight: FontWeight.w700
-                  )
-                ),
+                child: Text("오늘의 훈련을 시작해보아요.",
+                    textAlign: TextAlign.center,
+                    style: ts3.copyWith(fontWeight: FontWeight.w700)),
               ),
             ),
             SizedBox(
@@ -72,12 +67,47 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                         color: startColor,
                         borderRadius: BorderRadius.circular(25)),
                     child: Center(
-                      child: Text(
-                        '풍선을 \n 불어보아요.',
+                      child: Text('풍선을 \n 불어보아요.',
                           textAlign: TextAlign.center,
-                        style: ts2.copyWith(
-                          fontWeight: FontWeight.w700
-                        )
+                          style: ts2.copyWith(fontWeight: FontWeight.w700)),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => pronunciationExerciseScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: 300.0,
+                    height: 400.0,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(0, 169, 255, 0.3),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '발음을 \n 연습해보아요.',
+                            textAlign: TextAlign.center,
+                            style: ts2.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Icon(
+                            Icons.lock,
+                            size: 80.0,
+                            color:
+                                Color.fromRGBO(0, 169, 255, 0.8),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -87,47 +117,36 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => pronunciationExerciseScreen()),
-                    );
-                  },
-                  child: Container(
-                    width: 300.0,
-                    height: 400.0,
-                    decoration: BoxDecoration(
-                        color: Color(0x4D4E89D9),
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Center(
-                      child: Text(
-                        '발음을 \n 연습해보아요.',
-                        textAlign: TextAlign.center,
-                        style: ts2.copyWith(
-                            fontWeight: FontWeight.w700
-                        ),
+                        builder: (context) => fluentExerciseScreen(),
                       ),
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => fluentExerciseScreen()),
                     );
                   },
                   child: Container(
                     width: 300.0,
                     height: 400.0,
                     decoration: BoxDecoration(
-                        color: Color(0x4D4E89D9),
-                        borderRadius: BorderRadius.circular(25)),
+                      color: Color.fromRGBO(0, 169, 255, 0.3),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                     child: Center(
-                      child: Text(
-                        '아바타랑 \n 친구가 되어요.',
-                        textAlign: TextAlign.center,
-                        style: ts2.copyWith(
-                            fontWeight: FontWeight.w700
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '아바타랑 \n 친구가 되어요.',
+                            textAlign: TextAlign.center,
+                            style: ts2.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Icon(
+                            Icons.lock,
+                            size: 80.0,
+                            color:
+                            Color.fromRGBO(0, 169, 255, 0.8),
+                          ),
+                        ],
                       ),
                     ),
                   ),

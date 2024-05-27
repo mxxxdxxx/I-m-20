@@ -24,9 +24,6 @@ class _fluentFBState extends State<fluentFB> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 30.0,
-              ),
               Text('유창성훈련',
                 style: ts3.copyWith(fontWeight: FontWeight.w700),),
               SizedBox(

@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/peaki_button.dart';
 import '../const/color.dart';
 import '../const/text.dart';
 import 'MyAppBar.dart';
 import 'MyDrawer.dart';
 
 class pronunciationExerciseScreen extends StatefulWidget {
-  const pronunciationExerciseScreen({super.key});
-
   @override
   State<pronunciationExerciseScreen> createState() =>
       _pronunciationExerciseScreenState();
 }
 
-class _pronunciationExerciseScreenState
-    extends State<pronunciationExerciseScreen> {
+class _pronunciationExerciseScreenState extends State<pronunciationExerciseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

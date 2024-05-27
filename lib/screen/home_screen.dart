@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:speakiz/component/survey.dart';
 import '../component/img_float.dart';
 import '../component/login.dart';
 import '../const/color.dart';
@@ -29,16 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Positioned(
-            left: 0,
-            right: 0,
-            top: 85,
-            child: SvgPicture.asset(
-              'assets/images/AppLogo.svg',
-              width: 330,
-              height: 330,
-            ),
-          ),
-          Positioned(
             left: (MediaQuery.of(context).size.width - 700) / 2,
             bottom: 130,
             child: SizedBox(
@@ -61,19 +50,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   '시작하기',
                   style: ts3w.copyWith(
                     fontWeight: FontWeight.w700,
-                  )
+                  ),
                 ),
               ),
             ),
           ),
-          ...List.generate(50, (index) => FloatingImage(key: ValueKey(index)),
-
-          )],
+          ...List.generate(
+            10,
+                (index) => FloatingImage(key: ValueKey(index)),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 85,
+            child: SvgPicture.asset(
+              'assets/images/AppLogo.svg',
+              width: 330,
+              height: 330,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
-
-
-
-
