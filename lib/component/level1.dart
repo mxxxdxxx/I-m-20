@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:speakiz/component/passwordSet.dart';
 import '../component/situation_choose.dart';
 import '../const/color.dart';
 import '../const/text.dart';
@@ -76,7 +77,7 @@ class _level1State extends State<level1> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Situation()),
+                          MaterialPageRoute(builder: (context) => passwordSet(),),
                         );
                       },
                       style: ElevatedButton.styleFrom(
