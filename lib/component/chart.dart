@@ -13,7 +13,7 @@ class LineChartSample extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 400,
+              width: 500,
               height: 200,
               decoration: BoxDecoration(
                 color: ywColor,
@@ -117,8 +117,8 @@ class LineChartSample extends StatelessWidget {
                     borderData: FlBorderData(
                       show: true,
                       border: const Border(
-                        bottom: BorderSide(color: navyColor, width: 2),
-                        left: BorderSide(color: navyColor, width: 2),
+                        bottom: BorderSide(color: navyColor, width: 5),
+                        left: BorderSide(color: navyColor, width: 5),
                         right: BorderSide(color: Colors.transparent),
                         top: BorderSide(color: Colors.transparent),
                       ),

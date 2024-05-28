@@ -16,7 +16,7 @@ class MyDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            height: 250.0,
+            height: 270.0,
             child: DrawerHeader(
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,8 +38,12 @@ class MyDrawer extends StatelessWidget {
                       ),
                       Text(
                         '김덕우님',
-                        style: ts1.copyWith(fontWeight: FontWeight.w700),
+                        style: ts2.copyWith(fontWeight: FontWeight.w700),
                       ),
+                  Text(
+                    '레벨: 기초',
+                    style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
+                  ),
                     ],
                   ),
               decoration: BoxDecoration(

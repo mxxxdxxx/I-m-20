@@ -43,8 +43,9 @@ class _breathFBState extends State<breathFB> {
                   children: [
                     Container(
                       width: 800.0,
-                      height: 100.0,
-                      child: Center(
+                      height: 150.0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 100.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,33 +63,33 @@ class _breathFBState extends State<breathFB> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        width: 800.0,
-                        height: 100.0,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '높낮이',
-                                style: ts2,
-                              ),
-                              Container(
-                                width: 600,
-                                height: 30,
-                                color: yellowColor,
-                              )
-                            ],
-                          ),
+                    Container(
+                      width: 800.0,
+                      height: 150.0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 100.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '높낮이',
+                              style: ts2,
+                            ),
+                            Container(
+                              width: 600,
+                              height: 30,
+                              color: yellowColor,
+                            )
+                          ],
                         ),
                       ),
                     ),
                     Container(
                       width: 800.0,
-                      height: 100.0,
-                      child: Center(
+                      height: 150.0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 100.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,10 +98,14 @@ class _breathFBState extends State<breathFB> {
                               '완성한 풍선의 개수',
                               style: ts2,
                             ),
-                            Container(
-                              width: 600,
-                              height: 30,
-                              color: yellowColor,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 100.0),
+                              child: Row(
+                                children: [
+                                  Image.asset('assets/images/balloon.png', scale: 40.0,),
+                                  Text(' X   4', style: ts2.copyWith(fontWeight: FontWeight.w700),)
+                                ],
+                              ),
                             )
                           ],
                         ),

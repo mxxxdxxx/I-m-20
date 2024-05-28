@@ -4,7 +4,8 @@ import 'package:speakiz/component/survey_button.dart';
 import '../const/color.dart';
 import '../const/text.dart';
 import 'level2.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class test1 extends StatefulWidget {
   const test1({Key? key}) : super(key: key);
@@ -157,7 +158,6 @@ class _test1State extends State<test1> {
                       ],
                     ),
                   )),
-
               SizedBox(
                 height: 40.0,
               ),
@@ -381,8 +381,6 @@ class test3 extends StatefulWidget {
 }
 
 class _test3State extends State<test3> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -566,7 +564,6 @@ class test4 extends StatefulWidget {
 }
 
 class _test4State extends State<test4> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -894,9 +891,14 @@ class _test5State extends State<test5> {
                 width: 180.0,
                 height: 60.0,
                 child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       double avr = TestValues.getAverage();
                       print('avr 값: $avr');
+
+                      String level = avr < 50 ? '기초' : '보통';
+
+                      await TestValues.sendLevel(level);
+
                       if (avr < 50) {
                         Navigator.push(
                           context,
@@ -939,6 +941,30 @@ class TestValues {
   static int selectedValueTest5 = -1;
 
   static double getAverage() {
-    return (selectedValueTest1 + selectedValueTest2 + selectedValueTest3 + selectedValueTest4 + selectedValueTest5) / 5;
+    return (selectedValueTest1 +
+        selectedValueTest2 +
+        selectedValueTest3 +
+        selectedValueTest4 +
+        selectedValueTest5) /
+        5;
+  }
+
+  static Future<void> sendLevel(String level) async {
+    final url = Uri.parse('https://example.com/api/level');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'level': level,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('성공');
+    } else {
+      print('실패: ${response.statusCode}');
+    }
   }
 }

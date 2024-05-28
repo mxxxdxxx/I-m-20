@@ -27,12 +27,18 @@ class _feedbackState extends State<feedback> {
       body: Center(
         child: Column(
           children: [
+            // Text(
+            //   '최근 일주일',
+            //   style: ts1.copyWith(fontWeight: FontWeight.w700,
+            //   color: Colors.grey,
+            //   fontSize: 18.0),
+            // ),
             Text(
               '김덕우의 기록',
               style: ts3.copyWith(fontWeight: FontWeight.w700),
             ),
             SizedBox(
-              height: 30.0,
+              height: 20.0,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +46,7 @@ class _feedbackState extends State<feedback> {
                 Column(
                   children: [
                     Container(
-                      width: 400.0,
+                      width: 500.0,
                       height: 200.0,
                       decoration: BoxDecoration(
                         color: ywColor,
@@ -67,7 +73,7 @@ class _feedbackState extends State<feedback> {
                         '호흡훈련',
                         style: ts1.copyWith(
                           fontWeight: FontWeight.w700,
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           color: navyColor,
                         ),
                       ),
@@ -80,7 +86,7 @@ class _feedbackState extends State<feedback> {
                 Column(
                   children: [
                     Container(
-                      width: 400.0,
+                      width: 500.0,
                       height: 200.0,
                       decoration: BoxDecoration(
                         color: ywColor,
@@ -106,7 +112,7 @@ class _feedbackState extends State<feedback> {
                         '조음훈련',
                         style: ts1.copyWith(
                           fontWeight: FontWeight.w700,
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                           color: navyColor,
                         ),
                       ),
@@ -118,7 +124,7 @@ class _feedbackState extends State<feedback> {
             Column(
               children: [
                 Container(
-                  width: 830.0,
+                  width: 1030.0,
                   height: 250.0,
                   decoration: BoxDecoration(
                     color: ywColor,
@@ -144,7 +150,7 @@ class _feedbackState extends State<feedback> {
                     '유창성훈련',
                     style: ts1.copyWith(
                       fontWeight: FontWeight.w700,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       color: navyColor,
                     ),
                   ),
