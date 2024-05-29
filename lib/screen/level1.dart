@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/passwordSet.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import 'globals.dart' as globals;
+import 'package:speakiz/screen/passwordSet.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
+import 'package:speakiz/component/globals.dart' as globals;
 
 class level1 extends StatefulWidget {
   const level1({super.key});

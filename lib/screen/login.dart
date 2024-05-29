@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:speakiz/component/survey.dart';
+import 'package:speakiz/screen/survey.dart';
 import 'package:speakiz/const/color.dart';
-import '../const/text.dart';
+import 'package:speakiz/const/text.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import '../screen/home_screen.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
 
 class peaki extends StatefulWidget {
   const peaki({super.key});

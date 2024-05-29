@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/situation_choose.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import 'feedback.dart';
+import 'package:speakiz/screen/situation_choose.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
 
 class passwordSet extends StatefulWidget {
   const passwordSet({Key? key}) : super(key: key);

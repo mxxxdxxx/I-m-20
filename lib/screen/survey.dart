@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/level1.dart';
+import 'package:speakiz/screen/level1.dart';
 import 'package:speakiz/component/survey_button.dart';
-import '../const/color.dart';
-import '../const/text.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'globals.dart' as globals;
+import '../component/globals.dart' as globals;
 
 class test1 extends StatefulWidget {
   const test1({Key? key}) : super(key: key);

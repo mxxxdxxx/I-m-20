@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/peaki_button.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import 'MyAppBar.dart';
-import 'MyDrawer.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
+import 'package:speakiz/component/MyAppBar.dart';
+import 'package:speakiz/component/MyDrawer.dart';
 
 class fluentExerciseScreen extends StatefulWidget {
   const fluentExerciseScreen({super.key});

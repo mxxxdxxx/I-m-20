@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:speakiz/component/peaki_button.dart';
-import '../const/color.dart';
+import 'package:speakiz/const/color.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override

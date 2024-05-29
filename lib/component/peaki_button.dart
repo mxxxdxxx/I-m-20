@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/peaki_house.dart';
+import 'package:speakiz/screen/peaki_house.dart';
 
 class peakiButton extends StatefulWidget {
   const peakiButton({super.key});

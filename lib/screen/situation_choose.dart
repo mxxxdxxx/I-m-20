@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:speakiz/component/MyAppBar.dart';
-import 'package:speakiz/component/three_exercises.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import 'MyDrawer.dart';
+import 'package:speakiz/screen/three_exercises.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
+import 'package:speakiz/component//MyDrawer.dart';
 
 
 class Situation extends StatefulWidget {

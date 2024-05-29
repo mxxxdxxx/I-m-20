@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../const/text.dart';
+import 'package:speakiz/const/text.dart';
 
 class survey_button extends StatefulWidget {
   final Function(int) onValueSelected;

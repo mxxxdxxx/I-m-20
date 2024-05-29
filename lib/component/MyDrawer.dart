@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/MyPage.dart';
-import 'package:speakiz/component/parent.dart';
-import 'package:speakiz/component/settings.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import 'information.dart';
-import 'globals.dart' as globals;
+import 'package:speakiz/screen/MyPage.dart';
+import 'package:speakiz/screen/parent.dart';
+import 'package:speakiz/screen/settings.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
+import 'package:speakiz/screen/information.dart';
+import 'package:speakiz/component/globals.dart' as globals;
 
 class MyDrawer extends StatelessWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../const/color.dart';
-import '../const/text.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
 
 class mypage extends StatelessWidget {
   const mypage({super.key});
@@ -55,7 +55,6 @@ class mypage extends StatelessWidget {
                             Text('김덕우',
                             style: ts3.copyWith(
                               decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w700
                             ),),
                             SizedBox(
                               height: 10.0,
@@ -63,7 +62,6 @@ class mypage extends StatelessWidget {
                             Text('dukwoo1234',
                               style: ts3.copyWith(
                                 decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.w700
                               ),),
                             SizedBox(
                               height: 10.0,
@@ -71,7 +69,6 @@ class mypage extends StatelessWidget {
                             Text('dukwoo@naver.com',
                               style: ts3.copyWith(
                                 decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.w700
                               ),),
                           ],
                         ),

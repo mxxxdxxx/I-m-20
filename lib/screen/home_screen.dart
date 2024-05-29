@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../component/img_float.dart';
-import '../component/login.dart';
-import '../const/color.dart';
-import '../const/text.dart';
+import 'package:speakiz/component/img_float.dart';
+import 'package:speakiz/screen/login.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

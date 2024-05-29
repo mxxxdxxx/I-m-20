@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:speakiz/component/MyAppBar.dart';
 import 'package:speakiz/component/MyDrawer.dart';
-import '../component/breath_game.dart';
-import '../component/fluent_game.dart';
-import '../component/pronunciation_game.dart';
-import '../const/color.dart';
-import '../const/text.dart';
+import 'breath_game.dart';
+import 'fluent_game.dart';
+import 'pronunciation_game.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
 
 class ExerciseScreen extends StatefulWidget {
   @override

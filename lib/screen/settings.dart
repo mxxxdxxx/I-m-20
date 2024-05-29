@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../const/color.dart';
-import 'img_float.dart';
+import 'package:speakiz/const/color.dart';
 
 class settings extends StatelessWidget {
   const settings({super.key});

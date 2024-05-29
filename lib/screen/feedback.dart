@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:speakiz/component/pronun_fb.dart';
-import '../const/color.dart';
-import '../const/text.dart';
-import 'MyAppBar.dart';
-import 'MyDrawer.dart';
+import 'package:speakiz/screen/pronun_fb.dart';
+import 'package:speakiz/const/color.dart';
+import 'package:speakiz/const/text.dart';
+import 'package:speakiz/component/MyAppBar.dart';
+import 'package:speakiz/component/MyDrawer.dart';
 import 'breath_fb.dart';
-import 'chart.dart';
+import 'package:speakiz/component/chart.dart';
 import 'fluent_fb.dart';
 
 class feedback extends StatefulWidget {
