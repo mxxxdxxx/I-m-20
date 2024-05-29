@@ -5,8 +5,8 @@ import 'package:speakiz/component/parent.dart';
 import 'package:speakiz/component/settings.dart';
 import '../const/color.dart';
 import '../const/text.dart';
-import '../main.dart';
 import 'information.dart';
+import 'globals.dart' as globals;
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -41,7 +41,7 @@ class MyDrawer extends StatelessWidget {
                         style: ts2.copyWith(fontWeight: FontWeight.w700),
                       ),
                   Text(
-                    '레벨: 기초',
+                    '레벨: ${globals.level}',
                     style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
                   ),
                     ],
@@ -95,7 +95,6 @@ class MyDrawer extends StatelessWidget {
 
             },
           ),
-          // 원하는 만큼 메뉴 아이템 추가
         ],
       ),
     );

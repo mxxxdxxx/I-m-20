@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speakiz/component/survey.dart';
 import 'package:speakiz/const/color.dart';
 import '../const/text.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class login extends StatelessWidget {
   @override
@@ -22,6 +24,32 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   bool _isUsernameFocused = false;
   bool _isPasswordFocused = false;
+
+  Future<void> _login() async {
+    if (_formKey.currentState!.validate()) {
+      final response = await http.post(
+        Uri.parse('https://example.com/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'username': _usernameController.text,
+          'password': _passwordController.text,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('로그인 성공이다~!~!~!')),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('로그인 실패')),
+        );
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
