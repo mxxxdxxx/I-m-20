@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:speakiz/component/provider.dart';
+import 'package:speakiz/model/user.dart';
+import 'home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:speakiz/screen/survey.dart';
 import 'package:speakiz/const/color.dart';
 import 'package:speakiz/const/text.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class login extends StatelessWidget {
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoginScreen();
@@ -28,28 +31,38 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
       final response = await http.post(
-        Uri.parse('https://example.com/login'),
+        Uri.parse('https://localhost:8080/api/login'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'username': _usernameController.text,
+          'loginId': _usernameController.text,
           'password': _passwordController.text,
         }),
       );
 
       if (response.statusCode == 200) {
+        final userJson = jsonDecode(response.body);
+        final user = User.fromJson(userJson);
+        Provider.of<UserProvider>(context, listen: false).setUser(user);
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('로그인 성공이다~!~!~!')),
         );
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('로그인 실패')),
+          SnackBar(content: Text('로그인 실패 띠로리')),
         );
       }
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -161,12 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 60.0,
                     width: 180.0,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => test1()),
-                        );
-                      },
+                      onPressed: _login,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: navyColor,
                         shape: RoundedRectangleBorder(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:speakiz/screen/passwordSet.dart';
 import 'package:speakiz/const/color.dart';
 import 'package:speakiz/const/text.dart';
-import 'package:speakiz/component/globals.dart' as globals;
+import 'package:flutter/material.dart';
+import 'package:speakiz/component/provider.dart';
 
 class level1 extends StatefulWidget {
   const level1({super.key});
@@ -14,6 +16,11 @@ class level1 extends StatefulWidget {
 class _level1State extends State<level1> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+
+    if (user == null) {
+      return Center(child: Text('유저가 널이다'));
+    }
     return Scaffold(
       backgroundColor: backColor,
       body: Center(
@@ -57,7 +64,7 @@ class _level1State extends State<level1> {
                       child: Image.asset('assets/images/kid.png'),
                     ),
                     SizedBox(width: 30.0,),
-                    Text('우리 아이의 언어 발달 수준은  ‘${globals.level}’  단계입니다. \n\n 호흡훈련, 조음 훈련, AI아바타를 활용한 유창성 \n 훈련으로 아이의 말하기 실력이 향상될 수\n 있도록 꾸준한 지도 바랍니다. \n\n 위 설문은 훈련 30회차가 완료된 후 다시 한 번 \n 진행됩니다.',
+                    Text('우리 아이의 언어 발달 수준은  ‘Level: ${user.level}’  단계입니다. \n\n 호흡훈련, 조음 훈련, AI아바타를 활용한 유창성 \n 훈련으로 아이의 말하기 실력이 향상될 수\n 있도록 꾸준한 지도 바랍니다. \n\n 위 설문은 훈련 30회차가 완료된 후 다시 한 번 \n 진행됩니다.',
                     textAlign: TextAlign.start,
                     style: ts1.copyWith(
                       fontWeight: FontWeight.w700

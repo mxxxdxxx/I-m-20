@@ -1,16 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:speakiz/component/provider.dart';
 import 'package:speakiz/screen/MyPage.dart';
 import 'package:speakiz/screen/parent.dart';
 import 'package:speakiz/screen/settings.dart';
 import 'package:speakiz/const/color.dart';
 import 'package:speakiz/const/text.dart';
 import 'package:speakiz/screen/information.dart';
-import 'package:speakiz/component/globals.dart' as globals;
+import 'package:provider/provider.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context).user;
+
+    if (user == null) {
+      return Center(child: Text('유저가 널이다'));
+    }
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -37,11 +43,11 @@ class MyDrawer extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        '김덕우님',
+                        '${user.userName}님',
                         style: ts2.copyWith(fontWeight: FontWeight.w700),
                       ),
                   Text(
-                    '레벨: ${globals.level}',
+                    'Level: ${user.level}',
                     style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
                   ),
                     ],

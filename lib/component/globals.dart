@@ -1,4 +1,0 @@
-
-library globals;
-
-String level = '';

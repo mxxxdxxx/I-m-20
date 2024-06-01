@@ -7,8 +7,8 @@ class FloatingImage extends StatefulWidget {
 
   const FloatingImage({
     required Key key,
-    this.width = 90,
-    this.height = 80,
+    this.width = 100,
+    this.height = 90,
   }) : super(key: key);
 
   @override

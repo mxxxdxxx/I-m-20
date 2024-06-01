@@ -5,7 +5,9 @@ import 'package:speakiz/const/color.dart';
 import 'package:speakiz/const/text.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../component/globals.dart' as globals;
+import 'package:provider/provider.dart';
+import 'package:speakiz/component/provider.dart';
+import 'package:speakiz/model/user.dart';
 
 class test1 extends StatefulWidget {
   const test1({Key? key}) : super(key: key);
@@ -750,6 +752,9 @@ class _test5State extends State<test5> {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final user = userProvider.user;
+
     return Scaffold(
       backgroundColor: backColor,
       body: Center(
@@ -895,31 +900,14 @@ class _test5State extends State<test5> {
                       double avr = TestValues.getAverage();
                       print('avr 값: $avr');
 
-                      globals.level = avr < 50 ? '기초' : '보통';
+                      String level = avr < 50 ? '기초' : '보통';
+                      await TestValues.sendLevel(user?.userId, level);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => level1()),
                       );
                     },
-
-                    //await TestValues.sendLevel(globals.level);
-
-                    //   if (avr < 50) {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) => level1(),
-                    //       ),
-                    //     );
-                    //   } else {
-                    //     Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) => level2(),
-                    //       ),
-                    //     );
-                    //   }
-                    // },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: navyColor,
                       shape: RoundedRectangleBorder(
@@ -938,7 +926,6 @@ class _test5State extends State<test5> {
     );
   }
 }
-
 class TestValues {
   static int selectedValueTest1 = -1;
   static int selectedValueTest2 = -1;
@@ -948,30 +935,29 @@ class TestValues {
 
   static double getAverage() {
     return (selectedValueTest1 +
-            selectedValueTest2 +
-            selectedValueTest3 +
-            selectedValueTest4 +
-            selectedValueTest5) /
+        selectedValueTest2 +
+        selectedValueTest3 +
+        selectedValueTest4 +
+        selectedValueTest5) /
         5;
   }
+
+  static Future<void> sendLevel(String? userId, String level) async {
+    final url = Uri.parse('https://localhost:8080/users/$userId/level');
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'level': level,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('성공');
+    } else {
+      print('실패: ${response.statusCode}');
+    }
+  }
 }
-//
-//   static Future<void> sendLevel(String level) async {
-//     final url = Uri.parse('https://example.com/api/level');
-//     final response = await http.post(
-//       url,
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: jsonEncode({
-//         'level': level,
-//       }),
-//     );
-//
-//     if (response.statusCode == 200) {
-//       print('성공');
-//     } else {
-//       print('실패: ${response.statusCode}');
-//     }
-//   }
-// }

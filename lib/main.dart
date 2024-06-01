@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screen/home_screen.dart';
-
+import 'package:speakiz/screen/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:speakiz/component/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +10,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return ChangeNotifierProvider(
+      create: (context) => UserProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
