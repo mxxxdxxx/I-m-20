@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:speakiz/component/provider.dart';
 import 'package:speakiz/model/user.dart';
+import 'package:speakiz/repository/user_repository.dart';
 import 'home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speakiz/const/color.dart';
@@ -27,46 +28,29 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   bool _isUsernameFocused = false;
   bool _isPasswordFocused = false;
+  final UserRepository userRepository = UserRepository(baseUrl: 'http://10.0.2.2:8080');
 
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
       try {
         print('로그인 시도중..');
-        final response = await http.post(
-          Uri.parse('http://10.0.2.2:8080/users/login'), // https 대신 http 사용
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonEncode(<String, String>{
-            'loginId': _usernameController.text,
-            'password': _passwordController.text,
-          }),
+        final user = await userRepository.login(
+          _usernameController.text,
+          _passwordController.text,
         );
 
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${response.body}');
+        Provider.of<UserProvider>(context, listen: false).setUser(user);
 
-        if (response.statusCode == 200) {
-          final userJson = jsonDecode(response.body);
-          final user = User.fromJson(userJson);
-          Provider.of<UserProvider>(context, listen: false).setUser(user);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('로그인 성공~!~!~!')),
+        );
 
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('로그인 성공~!~!~!')),
-          );
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(),
-            ),
-          );
-        } else {
-          print('로그인 실패: ${response.statusCode}');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('로그인 실패: ${response.statusCode}')),
-          );
-        }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
       } catch (e) {
         print('Error: $e');
         ScaffoldMessenger.of(context).showSnackBar(

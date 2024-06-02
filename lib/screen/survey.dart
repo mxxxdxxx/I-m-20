@@ -901,7 +901,12 @@ class _test5State extends State<test5> {
                       print('avr 값: $avr');
 
                       String level = avr < 50 ? '기초' : '보통';
-                      await TestValues.sendLevel(user?.userId, level);
+                      // await TestValues.sendLevel(user?.userId, level);
+                      // user와 userId가 null이 아닌지 확인 후 sendLevel()
+                      if (user != null && user.userId != null) {
+                        int userId = int.parse(user.userId!); // String을 int로 변환
+                        await TestValues.sendLevel(userId, level);
+                      }
 
                       Navigator.push(
                         context,
@@ -942,7 +947,8 @@ class TestValues {
         5;
   }
 
-  static Future<void> sendLevel(String? userId, String level) async {
+  // sendLevel userId parameter String? 타입에서 int? 타입으로 변경
+  static Future<void> sendLevel(int? userId, String level) async {
     final url = Uri.parse('https://localhost:8080/users/$userId/level');
     final response = await http.post(
       url,
