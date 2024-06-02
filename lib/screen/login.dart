@@ -30,37 +30,51 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
-      final response = await http.post(
-        Uri.parse('https://localhost:8080/api/login'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'loginId': _usernameController.text,
-          'password': _passwordController.text,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        final userJson = jsonDecode(response.body);
-        final user = User.fromJson(userJson);
-        Provider.of<UserProvider>(context, listen: false).setUser(user);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('로그인 성공이다~!~!~!')),
+      try {
+        print('로그인 시도중..');
+        final response = await http.post(
+          Uri.parse('http://10.0.2.2:8080/users/login'), // https 대신 http 사용
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'loginId': _usernameController.text,
+            'password': _passwordController.text,
+          }),
         );
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      } else {
+        print('Response status: ${response.statusCode}');
+        print('Response body: ${response.body}');
+
+        if (response.statusCode == 200) {
+          final userJson = jsonDecode(response.body);
+          final user = User.fromJson(userJson);
+          Provider.of<UserProvider>(context, listen: false).setUser(user);
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('로그인 성공~!~!~!')),
+          );
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            ),
+          );
+        } else {
+          print('로그인 실패: ${response.statusCode}');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('로그인 실패: ${response.statusCode}')),
+          );
+        }
+      } catch (e) {
+        print('Error: $e');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('로그인 실패 띠로리')),
+          SnackBar(content: Text('서버 연결 실패: $e')),
         );
       }
+    } else {
+      print('Form validation failed');
     }
   }
 
@@ -174,7 +188,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 60.0,
                     width: 180.0,
                     child: ElevatedButton(
-                      onPressed: _login,
+                      onPressed: () {
+                        print('Login button pressed');
+                        _login();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: navyColor,
                         shape: RoundedRectangleBorder(
@@ -192,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-
+                      // 회원가입 기능 구현
                     },
                     child: Text(
                       '회원가입',
@@ -204,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-
+                      // ID / 비밀번호 찾기 기능 구현
                     },
                     child: Text(
                       'ID / 비밀번호 찾기',
