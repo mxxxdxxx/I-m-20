@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:speakiz/component/provider.dart';
 import 'package:speakiz/model/user.dart';
 import 'package:speakiz/repository/user_repository.dart';
+import 'package:speakiz/screen/survey.dart';
 import 'home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speakiz/const/color.dart';
@@ -195,14 +196,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else if (snapshot.hasError) {
                         return Center(child: Text('Error: ${snapshot.error}'));
                       } else if (snapshot.hasData) {
-                        return Column(
-                          children: [
-                            Text('userLoginId: ${snapshot.data!.userLoginId}'),
-                          ],
-                        );
+                        if (snapshot.data != null) {
+
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => test1()),
+                            );
+                          });
+                          return Container();
+                        } else {
+                          print('응답없음');
+                          return Container();
+                        }
                       } else {
                         print('응답없음');
-                        return Container(); // 응답없음 메시지를 UI에 표시하지 않음
+                        return Container();
                       }
                     },
                   ),
@@ -211,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // 회원가입 기능 구현
+
                     },
                     child: Text(
                       '회원가입',
@@ -223,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // ID / 비밀번호 찾기 기능 구현
+
                     },
                     child: Text(
                       'ID / 비밀번호 찾기',
