@@ -7,8 +7,6 @@ import 'home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speakiz/const/color.dart';
 import 'package:speakiz/const/text.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class Login extends StatelessWidget {
   @override
@@ -24,41 +22,38 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
+  final _idController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isUsernameFocused = false;
+  bool _isIdFocused = false;
   bool _isPasswordFocused = false;
   final UserRepository userRepository = UserRepository(baseUrl: 'http://10.0.2.2:8080');
 
-  Future<void> _login() async {
+  Future<User?>? _loginFuture;
+
+  Future<User?> _login() async {
+    print('로그인 버튼이 눌렸습니다.');
     if (_formKey.currentState!.validate()) {
       try {
-        print('로그인 시도중..');
+        print('로그인 시도중...');
         final user = await userRepository.login(
-          _usernameController.text,
+          _idController.text,
           _passwordController.text,
         );
 
-        Provider.of<UserProvider>(context, listen: false).setUser(user);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('로그인 성공~!~!~!')),
-        );
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
+        if (user != null) {
+          print('로그인 성공: ${user.userLoginId}');
+          return user;
+        } else {
+          print('로그인 실패: 사용자 정보가 null입니다.');
+          return null;
+        }
       } catch (e) {
-        print('Error: $e');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('서버 연결 실패: $e')),
-        );
+        print('Error during login: $e');
+        return null;
       }
     } else {
       print('Form validation failed');
+      return null;
     }
   }
 
@@ -100,9 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     child: TextFormField(
-                      controller: _usernameController,
+                      controller: _idController,
                       decoration: InputDecoration(
-                        labelText: !_isUsernameFocused ? 'ID 입력' : null,
+                        labelText: !_isIdFocused ? 'ID 입력' : null,
                         border: InputBorder.none,
                         contentPadding: EdgeInsets.symmetric(
                             horizontal: 20, vertical: 15),
@@ -115,12 +110,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       onTap: () {
                         setState(() {
-                          _isUsernameFocused = true;
+                          _isIdFocused = true;
                         });
                       },
                       onFieldSubmitted: (_) {
                         setState(() {
-                          _isUsernameFocused = false;
+                          _isIdFocused = false;
                         });
                       },
                     ),
@@ -174,7 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         print('Login button pressed');
-                        _login();
+                        setState(() {
+                          _loginFuture = _login();
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: navyColor,
@@ -187,6 +184,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: ts1w.copyWith(fontWeight: FontWeight.w700),
                       ),
                     ),
+                  ),
+                  _loginFuture == null
+                      ? Container()
+                      : FutureBuilder<User?>(
+                    future: _loginFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (snapshot.hasData) {
+                        return Column(
+                          children: [
+                            Text('userLoginId: ${snapshot.data!.userLoginId}'),
+                          ],
+                        );
+                      } else {
+                        print('응답없음');
+                        return Container(); // 응답없음 메시지를 UI에 표시하지 않음
+                      }
+                    },
                   ),
                   SizedBox(
                     height: 20.0,

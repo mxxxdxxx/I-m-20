@@ -12,11 +12,6 @@ import 'package:provider/provider.dart';
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
-
-    if (user == null) {
-      return Center(child: Text('유저가 널이다'));
-    }
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -43,11 +38,11 @@ class MyDrawer extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        '${user.userName}님',
+                        '김덕우님',
                         style: ts2.copyWith(fontWeight: FontWeight.w700),
                       ),
                   Text(
-                    'Level: ${user.level}',
+                    'Level: 기초',
                     style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
                   ),
                     ],
