@@ -8,7 +8,6 @@ class User {
 
   User({this.userLoginId, this.userPassword, this.userId, this.userName, this.level});
 
-  // JSON 데이터를 Dart 객체로 변환
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userLoginId: json['userLoginId'],
@@ -18,7 +17,7 @@ class User {
       level: json['level'],
     );
   }
-  // Dart 객체를 JSON으로 변환
+
   Map<String, dynamic> toJson() {
     return {
       'userLoginId': userLoginId,

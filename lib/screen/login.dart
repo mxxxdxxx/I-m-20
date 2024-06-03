@@ -29,9 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isPasswordFocused = false;
   final UserRepository userRepository = UserRepository(baseUrl: 'http://10.0.2.2:8080');
 
-  Future<User?>? _loginFuture;
-
-  Future<User?> _login() async {
+  Future<void> _login() async {
     print('로그인 버튼이 눌렸습니다.');
     if (_formKey.currentState!.validate()) {
       try {
@@ -43,18 +41,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
         if (user != null) {
           print('로그인 성공: ${user.userLoginId}');
-          return user;
+          // 로그인 성공 시 test1 페이지로 이동
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => test1()),
+          );
         } else {
           print('로그인 실패: 사용자 정보가 null입니다.');
-          return null;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('로그인 실패: 사용자 정보가 없습니다.')),
+          );
         }
       } catch (e) {
         print('Error during login: $e');
-        return null;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('서버 연결 실패: $e')),
+        );
       }
     } else {
       print('Form validation failed');
-      return null;
     }
   }
 
@@ -170,9 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         print('Login button pressed');
-                        setState(() {
-                          _loginFuture = _login();
-                        });
+                        _login();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: navyColor,
@@ -186,41 +189,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  _loginFuture == null
-                      ? Container()
-                      : FutureBuilder<User?>(
-                    future: _loginFuture,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                      } else if (snapshot.hasData) {
-                        if (snapshot.data != null) {
-
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => test1()),
-                            );
-                          });
-                          return Container();
-                        } else {
-                          print('응답없음');
-                          return Container();
-                        }
-                      } else {
-                        print('응답없음');
-                        return Container();
-                      }
-                    },
-                  ),
                   SizedBox(
                     height: 20.0,
                   ),
                   TextButton(
                     onPressed: () {
-
+                      // 회원가입 기능 구현
                     },
                     child: Text(
                       '회원가입',
@@ -232,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-
+                      // ID / 비밀번호 찾기 기능 구현
                     },
                     child: Text(
                       'ID / 비밀번호 찾기',

@@ -900,11 +900,14 @@ class _test5State extends State<test5> {
                       double avr = TestValues.getAverage();
                       print('avr 값: $avr');
 
-                      String level = avr < 50 ? '기초' : '보통';
+                      // String level = avr < 50 ? '기초' : '보통'
+                      // 0 : 기초, 1: 보통
+                      int level = avr < 50 ? 0 : 1;
                       // await TestValues.sendLevel(user?.userId, level);
                       // user와 userId가 null이 아닌지 확인 후 sendLevel()
                       if (user != null && user.userId != null) {
-                        int userId = int.parse(user.userId!); // String을 int로 변환
+                        // int userId = int.parse(user.userId!); // String을 int로 변환
+                        int userId = user.userId!;
                         await TestValues.sendLevel(userId, level);
                       }
 
@@ -948,7 +951,8 @@ class TestValues {
   }
 
   // sendLevel userId parameter String? 타입에서 int? 타입으로 변경
-  static Future<void> sendLevel(int? userId, String level) async {
+  // static Future<void> sendLevel(int? userId, String level) async {
+  static Future<void> sendLevel(int? userId, int? level) async {
     final url = Uri.parse('https://localhost:8080/users/$userId/level');
     final response = await http.post(
       url,

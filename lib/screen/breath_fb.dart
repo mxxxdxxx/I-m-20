@@ -73,7 +73,7 @@ class _breathFBState extends State<breathFB> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '높낮이',
+                              '성량',
                               style: ts2,
                             ),
                             Container(
