@@ -68,7 +68,7 @@ public class UserService {
                     case "userName": user.setUserName((String) value); break;
                     case "userLoginId": user.setUserLoginId((String) value); break;
                     case "userPassword": user.setUserPassword((String) value); break;
-                    case "userLoginType": user.setUserLoginType((String) value); break;
+                    case "userLoginType": user.setUserLoginType((Integer) value); break;
                     case "userSnsKey": user.setUserSnsKey((Integer) value); break;
                     case "userPhone": user.setUserPhone((Integer) value); break;
                     case "userParentPassword": user.setUserParentPassword((String) value); break;

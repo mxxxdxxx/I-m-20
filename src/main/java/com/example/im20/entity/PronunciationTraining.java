@@ -2,6 +2,7 @@ package com.example.im20.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 @AllArgsConstructor
-@EntityScan
+@NoArgsConstructor
 @Table(name = "pronunciation_training")
 public class PronunciationTraining {
 
