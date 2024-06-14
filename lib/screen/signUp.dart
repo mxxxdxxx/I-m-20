@@ -20,7 +20,6 @@ class _SignupState extends State<Signup> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _verificationController = TextEditingController();
 
   @override
   void dispose() {
@@ -30,7 +29,6 @@ class _SignupState extends State<Signup> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     _phoneController.dispose();
-    _verificationController.dispose();
     super.dispose();
   }
 
@@ -229,32 +227,6 @@ class _SignupState extends State<Signup> {
                     controller: _phoneController,
                     decoration: InputDecoration(
                       labelText: '핸드폰 번호 입력',
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                SizedBox(height: 20),
-                // 인증번호 입력
-                Container(
-                  width: 700.0,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        spreadRadius: 0,
-                        blurRadius: 5,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                  child: TextFormField(
-                    controller: _verificationController,
-                    decoration: InputDecoration(
-                      labelText: '인증번호 입력',
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     ),

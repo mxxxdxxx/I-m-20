@@ -177,11 +177,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         print('Login button pressed');
-                        _login();
-                        // Navigator.pushReplacement(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => test1()),
-                        // );
+                        // _login();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => test1()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: navyColor,

@@ -8,10 +8,20 @@ import 'package:speakiz_im/const/color.dart';
 import 'package:speakiz_im/const/text.dart';
 import 'package:speakiz_im/screen/information.dart';
 import 'package:provider/provider.dart';
+import 'package:speakiz_im/repository/user_repository.dart';
 
-class MyDrawer extends StatelessWidget {
+class MyDrawer extends StatefulWidget {
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final user = userProvider.user;
+    final userLevelText = '';
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -20,7 +30,7 @@ class MyDrawer extends StatelessWidget {
             height: 270.0,
             child: DrawerHeader(
               child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     width: 150.0,
@@ -34,66 +44,70 @@ class MyDrawer extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                   ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        '김덕우님',
-                        style: ts2.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                  // Text(
-                  //   '기초',
-                  //   style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
-                  // ),
-                    ],
+                  SizedBox(
+                    height: 10.0,
                   ),
+                  Text(
+                    '${user?.userName ?? '사용자'}님',
+                    style: ts2.copyWith(fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '${userLevelText}',
+                    style: ts1.copyWith(fontSize: 15.0, fontWeight: FontWeight.w700),
+                  ),
+                ],
+              ),
               decoration: BoxDecoration(
                 color: yellowColor,
               ),
             ),
           ),
           ListTile(
-            title: Text('마이페이지',
-              style: ts1.copyWith(fontWeight: FontWeight.w700),),
+            title: Text(
+              '마이페이지',
+              style: ts1.copyWith(fontWeight: FontWeight.w700),
+            ),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => mypage()),
+                MaterialPageRoute(builder: (context) => mypage()),
               );
             },
           ),
           ListTile(
-            title: Text('설정',
-              style: ts1.copyWith(fontWeight: FontWeight.w700),),
+            title: Text(
+              '설정',
+              style: ts1.copyWith(fontWeight: FontWeight.w700),
+            ),
             onTap: () {
-              Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => settings()),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => settings()),
               );
-
             },
           ),
           ListTile(
-            title: Text('학부모용',
-              style: ts1.copyWith(fontWeight: FontWeight.w700),),
+            title: Text(
+              '학부모용',
+              style: ts1.copyWith(fontWeight: FontWeight.w700),
+            ),
             onTap: () {
-              Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => parent()),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => parent()),
               );
-
             },
           ),
           ListTile(
-            title: Text('개발정보',
-              style: ts1.copyWith(fontWeight: FontWeight.w700),),
+            title: Text(
+              '개발정보',
+              style: ts1.copyWith(fontWeight: FontWeight.w700),
+            ),
             onTap: () {
-              Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => MyApp1()),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp1()),
               );
-
             },
           ),
         ],

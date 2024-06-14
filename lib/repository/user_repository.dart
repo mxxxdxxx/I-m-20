@@ -65,15 +65,11 @@ class UserRepository {
   }
 
   // 레벨 전송 함수임다 sendlevel에서 sendUserLevel로 이름 변경했어여
-  Future<void> sendUserLevel(int? userId, int userLevel) async {
+  Future<void> sendUserLevel(int userId, int userLevel) async {
     final Map<String, dynamic> data = {
+      'userId': userId,
       'userLevel': userLevel,
     };
-
-    // userId가 null이 될 수도 있다고 해서 null이 아닌 경우에만 저장(이 코드 근데 필요할까요..? 밑에 함수에는 안썼는데 빼도 되겠죠?)
-    if (userId != null) {
-      data['userId'] = userId;
-    }
 
     final response = await http.post(
       Uri.parse('$baseUrl/users/level'),
@@ -131,7 +127,6 @@ class UserRepository {
     }
   }
 }
-
 
 
 

@@ -9,7 +9,6 @@ import '../repository/user_repository.dart';
 
 class level1 extends StatefulWidget {
   final int userLevel;
-
   const level1({Key? key, required this.userLevel}) : super(key: key);
 
   @override

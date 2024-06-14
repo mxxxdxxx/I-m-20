@@ -20,7 +20,8 @@ class _PasswordSetState extends State<PasswordSet> {
   Future<void> _sendParentPassword(int userId) async {
     if (_passwordController.text.isNotEmpty) {
       try {
-        await UserRepository().senduserParentPassword(userId, _passwordController.text);
+        await UserRepository()
+            .senduserParentPassword(userId, _passwordController.text);
       } catch (e) {
         print('Error setting parent password: $e');
       }
@@ -64,12 +65,17 @@ class _PasswordSetState extends State<PasswordSet> {
                   Text(
                     '4자리 숫자로 비밀번호를 설정해주세요.',
                     textAlign: TextAlign.center,
-                    style: ts3.copyWith(fontWeight: FontWeight.w700,),
+                    style: ts3.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   Text(
                     '아동의 훈련 피드백을 확인할 수 있는 학부모용으로 전환하려면 비밀번호가 필요합니다.',
                     textAlign: TextAlign.center,
-                    style: ts1.copyWith(fontSize: 17.0, fontWeight: FontWeight.w700, color: Colors.grey),
+                    style: ts1.copyWith(
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey),
                   ),
                   SizedBox(height: 5.0),
                   TextFormField(
@@ -106,15 +112,22 @@ class _PasswordSetState extends State<PasswordSet> {
                     },
                   ),
                   SizedBox(height: 20.0),
+                  // ElevatedButton(
+                  //   onPressed: () async {
+                  //     if (user != null && user.userId != null) {
+                  //       await _sendParentPassword(user.userId!);
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(builder: (context) => PasswordCheck(userId: user.userId!)),
+                  //       );
+                  //     }
+                  //   },
                   ElevatedButton(
-                    onPressed: () async {
-                      if (user != null && user.userId != null) {
-                        await _sendParentPassword(user.userId!);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PasswordCheck(userId: user.userId!)),
-                        );
-                      }
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Situation()),
+                      );
                     },
                     child: Text(
                       '확인',
@@ -160,7 +173,8 @@ class _PasswordCheckState extends State<PasswordCheck> {
 
   Future<void> _fetchParentPassword() async {
     try {
-      String fetchedPassword = await UserRepository().fetchuserParentPassword(widget.userId);
+      String fetchedPassword =
+          await UserRepository().fetchuserParentPassword(widget.userId);
       setState(() {
         _parentPassword = fetchedPassword;
       });
@@ -203,14 +217,16 @@ class _PasswordCheckState extends State<PasswordCheck> {
                   Text(
                     '비밀번호가 다음과 같이 설정되었습니다.',
                     textAlign: TextAlign.center,
-                    style: ts3.copyWith(fontWeight: FontWeight.w700,),
+                    style: ts3.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   SizedBox(height: 5.0),
                   Text(
                     _parentPassword ?? '불러오는 중...',
                     textAlign: TextAlign.center,
-                    style: ts3.copyWith(fontWeight: FontWeight.w700,
-                        color: Colors.grey),
+                    style: ts3.copyWith(
+                        fontWeight: FontWeight.w700, color: Colors.grey),
                   ),
                   SizedBox(height: 20.0),
                   ElevatedButton(

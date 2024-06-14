@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:speakiz_im/const/color.dart';
 import 'package:speakiz_im/const/text.dart';
+import '../component/provider.dart';
 
 class mypage extends StatelessWidget {
   const mypage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context);
+    final user = userProvider.user;
+
     return Scaffold(
       backgroundColor: backColor,
       body: Center(
@@ -52,21 +57,21 @@ class mypage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('김덕우',
+                            Text('${user?.userName ?? '사용자'}님',
                             style: ts3.copyWith(
                               decoration: TextDecoration.underline,
                             ),),
                             SizedBox(
                               height: 10.0,
                             ),
-                            Text('dukwoo1234',
+                            Text('${user?.userLoginId ?? '아이디'}',
                               style: ts3.copyWith(
                                 decoration: TextDecoration.underline,
                               ),),
                             SizedBox(
                               height: 10.0,
                             ),
-                            Text('dukwoo@naver.com',
+                            Text('${user?.userEmail ?? '이메일'}',
                               style: ts3.copyWith(
                                 decoration: TextDecoration.underline,
                               ),),

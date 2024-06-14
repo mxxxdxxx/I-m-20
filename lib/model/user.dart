@@ -4,6 +4,7 @@ class User {
   final String? userName;
   final String? userLoginId;
   final String? userPassword;
+  final String? userEmail;
   final int? userLoginType;
   final int? userSnsKey;
   final int? userPhone;
@@ -17,6 +18,7 @@ class User {
       this.userName,
       this.userLoginId,
       this.userPassword,
+      this.userEmail,
       this.userLoginType,
       this.userSnsKey,
       this.userPhone,
@@ -31,6 +33,7 @@ class User {
       userName: json['userName'],
       userLoginId: json['userLoginId'],
       userPassword: json['userPassword'],
+      userEmail: json['userEmail'],
       userLoginType: json['userLoginType'],
       userSnsKey: json['userSnsKey'],
       userPhone: json['userPhone'],
@@ -47,6 +50,7 @@ class User {
       'userName': userName,
       'userLoginId': userLoginId,
       'userPassword': userPassword,
+      'userEmail': userEmail,
       'userLoginType': userLoginType,
       'userSnsKey': userSnsKey,
       'userPhone': userPhone,
