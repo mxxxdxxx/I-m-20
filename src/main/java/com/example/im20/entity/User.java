@@ -1,13 +1,15 @@
 package com.example.im20.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "user")
 public class User {
 
@@ -26,7 +28,7 @@ public class User {
     private String userPassword;
 
     @Column(name = "user_login_type")
-    private String userLoginType;
+    private Integer userLoginType;
 
     @Column(name = "user_sns_key")
     private Integer userSnsKey;
@@ -82,11 +84,11 @@ public class User {
         this.userPassword = userPassword;
     }
 
-    public String getUserLoginType() {
+    public Integer getUserLoginType() {
         return userLoginType;
     }
 
-    public void setUserLoginType(String userLoginType) {
+    public void setUserLoginType(Integer userLoginType) {
         this.userLoginType = userLoginType;
     }
 

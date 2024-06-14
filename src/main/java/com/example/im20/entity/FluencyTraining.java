@@ -1,15 +1,14 @@
 package com.example.im20.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-import javax.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
 @AllArgsConstructor
-@EntityScan
+@NoArgsConstructor
 @Table(name = "fluency_training")
 public class FluencyTraining {
 

@@ -84,7 +84,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/create")
+    @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
@@ -115,9 +115,6 @@ public class UserController {
      * 테스트용 로그 출력
      */
     // 사용자 레벨 설정 엔드포인트
-//
-
-//
     @PostMapping("/{id}/level")
     public ResponseEntity<String> setUserLevel(@PathVariable Integer id, @RequestBody User request) {
         Integer level = request.getUserLevel();
