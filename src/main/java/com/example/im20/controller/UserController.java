@@ -1,7 +1,7 @@
-package im20.controller;
+package com.example.im20.controller;
 
-import im20.entity.User;
-import im20.service.UserService;
+import com.example.im20.entity.User;
+import com.example.im20.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

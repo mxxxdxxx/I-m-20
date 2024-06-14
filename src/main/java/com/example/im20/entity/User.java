@@ -1,4 +1,4 @@
-package im20.entity;
+package com.example.im20.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

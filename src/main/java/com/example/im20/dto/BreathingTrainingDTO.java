@@ -1,4 +1,4 @@
-package im20.dto;
+package com.example.im20.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

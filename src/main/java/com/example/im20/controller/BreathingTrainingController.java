@@ -1,11 +1,11 @@
-package im20.controller;
+package com.example.im20.controller;
 
-import im20.dto.BreathingTrainingDTO;
-import im20.entity.BreathingTraining;
-import im20.entity.Manage;
-import im20.repository.BreathingTrainingRepository;
-import im20.repository.ManageRepository;
-import im20.service.GameService;
+import com.example.im20.dto.BreathingTrainingDTO;
+import com.example.im20.entity.BreathingTraining;
+import com.example.im20.entity.Manage;
+import com.example.im20.repository.BreathingTrainingRepository;
+import com.example.im20.repository.ManageRepository;
+import com.example.im20.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

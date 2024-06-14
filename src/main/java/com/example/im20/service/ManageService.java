@@ -1,6 +1,6 @@
-package im20.service;
+package com.example.im20.service;
 
-import im20.entity.*;
+import com.example.im20.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

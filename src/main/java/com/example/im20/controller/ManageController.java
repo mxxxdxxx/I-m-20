@@ -1,7 +1,7 @@
-package im20.controller;
+package com.example.im20.controller;
 
-import im20.entity.*;
-import im20.repository.*;
+import com.example.im20.entity.*;
+import com.example.im20.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

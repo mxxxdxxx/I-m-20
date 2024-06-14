@@ -1,7 +1,7 @@
-package im20.service;
+package com.example.im20.service;
 
-import im20.entity.User;
-import im20.repository.UserRepository;
+import com.example.im20.entity.User;
+import com.example.im20.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +54,13 @@ public class UserService {
         }).orElse(false);
     }
 
+    /**
+     * user 데이터 부분 업데이트
+     * key에 따라 부분적 수정
+     * @param id
+     * @param updates
+     * @return
+     */
     public Optional<User> partialUpdateUser(Integer id, Map<String, Object> updates) {
         return userRepository.findById(id).map(user -> {
             updates.forEach((key, value) -> {

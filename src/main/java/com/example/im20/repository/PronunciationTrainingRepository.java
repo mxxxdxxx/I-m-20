@@ -1,7 +1,7 @@
-package im20.repository;
+package com.example.im20.repository;
 
-import im20.entity.PronunciationTraining;
-import im20.entity.Manage;
+import com.example.im20.entity.PronunciationTraining;
+import com.example.im20.entity.Manage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
