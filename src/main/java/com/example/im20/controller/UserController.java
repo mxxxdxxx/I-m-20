@@ -203,6 +203,7 @@ public class UserController {
         }
     }
 
+
     @GetMapping("/{id}/parent-password")
     public ResponseEntity<String> verifyParentPassword(@PathVariable Integer id, @RequestParam String parentPassword) {
         Optional<User> userOpt = userService.findUserById(id);

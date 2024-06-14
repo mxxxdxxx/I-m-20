@@ -1,15 +1,14 @@
 package com.example.im20.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter @Setter
 @Table(name = "user")
 public class User {
 
@@ -36,6 +35,9 @@ public class User {
     @Column(name = "user_phone")
     private Integer userPhone;
 
+    @Column(name = "user_email")
+    private String userEmail;
+
     @Column(name = "user_parent_password")
     private String userParentPassword;
 
@@ -49,94 +51,5 @@ public class User {
     private Integer userLevel;
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Manage> manages;
-
-    // Getters and Setters
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserLoginId() {
-        return userLoginId;
-    }
-
-    public void setUserLoginId(String userLoginId) {
-        this.userLoginId = userLoginId;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public Integer getUserLoginType() {
-        return userLoginType;
-    }
-
-    public void setUserLoginType(Integer userLoginType) {
-        this.userLoginType = userLoginType;
-    }
-
-    public Integer getUserSnsKey() {
-        return userSnsKey;
-    }
-
-    public void setUserSnsKey(Integer userSnsKey) {
-        this.userSnsKey = userSnsKey;
-    }
-
-    public Integer getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(Integer userPhone) {
-        this.userPhone = userPhone;
-    }
-
-    public String getUserParentPassword() {
-        return userParentPassword;
-    }
-
-    public void setUserParentPassword(String userParentPassword) {
-        this.userParentPassword = userParentPassword;
-    }
-
-    public Integer getUserStamp() {
-        return userStamp;
-    }
-
-    public void setUserStamp(Integer userStamp) {
-        this.userStamp = userStamp;
-    }
-
-    public String getUserProfilePhoto() {
-        return userProfilePhoto;
-    }
-
-    public void setUserProfilePhoto(String userProfilePhoto) {
-        this.userProfilePhoto = userProfilePhoto;
-    }
-
-    public Integer getUserLevel() {
-        return userLevel;
-    }
-
-    public void setUserLevel(Integer userLevel) {
-        this.userLevel = userLevel;
-    }
+//    private List<Manage> manages
 }

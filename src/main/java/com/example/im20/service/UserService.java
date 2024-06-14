@@ -39,6 +39,7 @@ public class UserService {
             user.setUserLoginType(userDetails.getUserLoginType());
             user.setUserSnsKey(userDetails.getUserSnsKey());
             user.setUserPhone(userDetails.getUserPhone());
+            user.setUserEmail(userDetails.getUserEmail());
             user.setUserParentPassword(userDetails.getUserParentPassword());
             user.setUserStamp(userDetails.getUserStamp());
             user.setUserProfilePhoto(userDetails.getUserProfilePhoto());
@@ -71,6 +72,7 @@ public class UserService {
                     case "userLoginType": user.setUserLoginType((Integer) value); break;
                     case "userSnsKey": user.setUserSnsKey((Integer) value); break;
                     case "userPhone": user.setUserPhone((Integer) value); break;
+                    case "userEmail": user.setUserEmail((String) value); break;
                     case "userParentPassword": user.setUserParentPassword((String) value); break;
                     case "userStamp": user.setUserStamp((Integer) value); break;
                     case "userProfilePhoto": user.setUserProfilePhoto((String) value); break;
@@ -86,6 +88,10 @@ public class UserService {
      * 학부모용 비밀번호 4글자 10진수 확인
      */
     public boolean validateParentPassword(String parentPassword) {
+        if (parentPassword == null) {
+            return false;
+        }
+        // "\\d{4}"로 수정합니다. 이는 4자리 숫자만 허용합니다.
         return parentPassword.matches("\\d{4}");
     }
 }
