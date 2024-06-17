@@ -17,8 +17,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="00d96ab5-d39b-4645-a47f-03b7bd2e3249">
-      <console name="127.0.0.1" type="STANDARD" schema="im20db" session="Main"><![CDATA[select *
-FROM user;]]></console>
+      <console name="127.0.0.1" type="STANDARD" schema="im20db" session="Main"><![CDATA[ALTER TABLE breathing_training MODIFY breathing_training_id INT AUTO_INCREMENT;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

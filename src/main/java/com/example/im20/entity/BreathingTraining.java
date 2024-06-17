@@ -1,5 +1,6 @@
 package com.example.im20.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,7 +48,9 @@ public class BreathingTraining {
     @Column(name = "bt_times")
     private Integer btTimes;
 
+    // 순환 참조 방지
     @ManyToOne
     @JoinColumn(name = "manage_id", nullable = false)
+    @JsonBackReference
     private Manage manage;
 }

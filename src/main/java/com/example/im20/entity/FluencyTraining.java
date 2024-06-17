@@ -1,14 +1,14 @@
 package com.example.im20.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter @Setter
 @Table(name = "fluency_training")
 public class FluencyTraining {
 
@@ -21,31 +21,7 @@ public class FluencyTraining {
     private String ftFeedback;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "manage_id", nullable = false)
     private Manage manage;
-
-    // Getters and Setters
-    public Integer getFluencyTrainingId() {
-        return fluencyTrainingId;
-    }
-
-    public void setFluencyTrainingId(Integer fluencyTrainingId) {
-        this.fluencyTrainingId = fluencyTrainingId;
-    }
-
-    public String getFtFeedback() {
-        return ftFeedback;
-    }
-
-    public void setFtFeedback(String ftFeedback) {
-        this.ftFeedback = ftFeedback;
-    }
-
-    public Manage getManage() {
-        return manage;
-    }
-
-    public void setManage(Manage manage) {
-        this.manage = manage;
-    }
 }

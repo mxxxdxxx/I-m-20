@@ -3,11 +3,11 @@ package com.example.im20.controller;
 import com.example.im20.entity.*;
 import com.example.im20.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @RestController
 @RequestMapping("/manages")
@@ -33,7 +33,8 @@ public class ManageController {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 사용자 ID입니다."));
 
-        Date today = new Date();
+//        Date today = new Date();
+        LocalDate today = LocalDate.now();
 
         // 오늘 날짜에 해당 사용자의 Manage 엔티티가 있는지 확인
         Optional<Manage> existingManage = manageRepository.findByUserIdAndManageDate(userId, today);
@@ -51,7 +52,7 @@ public class ManageController {
 
     // 특정 Manage 엔티티에 포함된 모든 트레이닝 엔티티 조회
     @GetMapping("/{manageId}/trainings")
-    public List<Object> getAllTrainings(@PathVariable Integer manageId) {
+    public ResponseEntity<Map<String, List<?>>> getAllTrainings(@PathVariable Integer manageId) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
 
@@ -59,39 +60,52 @@ public class ManageController {
         List<FluencyTraining> fluencyTrainings = fluencyTrainingRepository.findByManage(manage);
         List<PronunciationTraining> pronunciationTrainings = pronunciationTrainingRepository.findByManage(manage);
 
-        return List.of(breathingTrainings, fluencyTrainings, pronunciationTrainings);
+        Map<String, List<?>> trainings = new HashMap<>();
+        trainings.put("breathingTrainings", breathingTrainings);
+        trainings.put("fluencyTrainings", fluencyTrainings);
+        trainings.put("pronunciationTrainings", pronunciationTrainings);
+
+        return ResponseEntity.ok(trainings);
     }
+//    @GetMapping("/{manageId}/trainings")
+//    public List<Object> getAllTrainings(@PathVariable Integer manageId) {
+//        Manage manage = manageRepository.findById(manageId)
+//                .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
+//
+//        List<BreathingTraining> breathingTrainings = breathingTrainingRepository.findByManage(manage);
+//        List<FluencyTraining> fluencyTrainings = fluencyTrainingRepository.findByManage(manage);
+//        List<PronunciationTraining> pronunciationTrainings = pronunciationTrainingRepository.findByManage(manage);
+//
+//        return List.of(breathingTrainings, fluencyTrainings, pronunciationTrainings);
+//    }
 
     // BreathingTraining 생성
     @PostMapping("/{manageId}/bt")
-    public BreathingTraining createBreathingTraining(@PathVariable Integer manageId, @RequestBody BreathingTraining breathingTraining) {
+    public ResponseEntity<BreathingTraining> createBreathingTraining(@PathVariable Integer manageId, @RequestBody BreathingTraining breathingTraining) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
         breathingTraining.setManage(manage);
-        return breathingTrainingRepository.save(breathingTraining);
+        return ResponseEntity.ok(breathingTrainingRepository.save(breathingTraining));
     }
 
-    // FluencyTraining 생성
     @PostMapping("/{manageId}/ft")
-    public FluencyTraining createFluencyTraining(@PathVariable Integer manageId, @RequestBody FluencyTraining fluencyTraining) {
+    public ResponseEntity<FluencyTraining> createFluencyTraining(@PathVariable Integer manageId, @RequestBody FluencyTraining fluencyTraining) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
         fluencyTraining.setManage(manage);
-        return fluencyTrainingRepository.save(fluencyTraining);
+        return ResponseEntity.ok(fluencyTrainingRepository.save(fluencyTraining));
     }
 
-    // PronunciationTraining 생성
     @PostMapping("/{manageId}/pt")
-    public PronunciationTraining createPronunciationTraining(@PathVariable Integer manageId, @RequestBody PronunciationTraining pronunciationTraining) {
+    public ResponseEntity<PronunciationTraining> createPronunciationTraining(@PathVariable Integer manageId, @RequestBody PronunciationTraining pronunciationTraining) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
         pronunciationTraining.setManage(manage);
-        return pronunciationTrainingRepository.save(pronunciationTraining);
+        return ResponseEntity.ok(pronunciationTrainingRepository.save(pronunciationTraining));
     }
 
-    // BreathingTraining 업데이트
     @PutMapping("/bt/{id}")
-    public BreathingTraining updateBreathingTraining(@PathVariable Integer id, @RequestBody BreathingTraining breathingTrainingDetails) {
+    public ResponseEntity<BreathingTraining> updateBreathingTraining(@PathVariable Integer id, @RequestBody BreathingTraining breathingTrainingDetails) {
         BreathingTraining breathingTraining = breathingTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 BreathingTraining ID입니다."));
 
@@ -105,23 +119,21 @@ public class ManageController {
         breathingTraining.setBtFeedback(breathingTrainingDetails.getBtFeedback());
         breathingTraining.setBtTimes(breathingTrainingDetails.getBtTimes());
 
-        return breathingTrainingRepository.save(breathingTraining);
+        return ResponseEntity.ok(breathingTrainingRepository.save(breathingTraining));
     }
 
-    // FluencyTraining 업데이트
     @PutMapping("/ft/{id}")
-    public FluencyTraining updateFluencyTraining(@PathVariable Integer id, @RequestBody FluencyTraining fluencyTrainingDetails) {
+    public ResponseEntity<FluencyTraining> updateFluencyTraining(@PathVariable Integer id, @RequestBody FluencyTraining fluencyTrainingDetails) {
         FluencyTraining fluencyTraining = fluencyTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 FluencyTraining ID입니다."));
 
         fluencyTraining.setFtFeedback(fluencyTrainingDetails.getFtFeedback());
 
-        return fluencyTrainingRepository.save(fluencyTraining);
+        return ResponseEntity.ok(fluencyTrainingRepository.save(fluencyTraining));
     }
 
-    // PronunciationTraining 업데이트
     @PutMapping("/pt/{id}")
-    public PronunciationTraining updatePronunciationTraining(@PathVariable Integer id, @RequestBody PronunciationTraining pronunciationTrainingDetails) {
+    public ResponseEntity<PronunciationTraining> updatePronunciationTraining(@PathVariable Integer id, @RequestBody PronunciationTraining pronunciationTrainingDetails) {
         PronunciationTraining pronunciationTraining = pronunciationTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 PronunciationTraining ID입니다."));
 
@@ -133,30 +145,30 @@ public class ManageController {
         pronunciationTraining.setPtPic(pronunciationTrainingDetails.getPtPic());
         pronunciationTraining.setPtStdVoice(pronunciationTrainingDetails.getPtStdVoice());
 
-        return pronunciationTrainingRepository.save(pronunciationTraining);
+        return ResponseEntity.ok(pronunciationTrainingRepository.save(pronunciationTraining));
     }
 
-    // BreathingTraining 삭제
     @DeleteMapping("/bt/{id}")
-    public void deleteBreathingTraining(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteBreathingTraining(@PathVariable Integer id) {
         BreathingTraining breathingTraining = breathingTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 BreathingTraining ID입니다."));
         breathingTrainingRepository.delete(breathingTraining);
+        return ResponseEntity.noContent().build();
     }
 
-    // FluencyTraining 삭제
     @DeleteMapping("/ft/{id}")
-    public void deleteFluencyTraining(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteFluencyTraining(@PathVariable Integer id) {
         FluencyTraining fluencyTraining = fluencyTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 FluencyTraining ID입니다."));
         fluencyTrainingRepository.delete(fluencyTraining);
+        return ResponseEntity.noContent().build();
     }
 
-    // PronunciationTraining 삭제
     @DeleteMapping("/pt/{id}")
-    public void deletePronunciationTraining(@PathVariable Integer id) {
+    public ResponseEntity<Void> deletePronunciationTraining(@PathVariable Integer id) {
         PronunciationTraining pronunciationTraining = pronunciationTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 PronunciationTraining ID입니다."));
         pronunciationTrainingRepository.delete(pronunciationTraining);
+        return ResponseEntity.noContent().build();
     }
 }

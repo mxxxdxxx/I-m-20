@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,14 +27,15 @@ public class Manage {
     private Integer manageId;
 
     @Column(name = "manage_date")
-    private Date manageDate;
+    private LocalDate manageDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonManagedReference
     private User user;
 
-    @OneToMany(mappedBy = "manage", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<BreathingTraining> breathingTrainings;
 
     @OneToMany(mappedBy = "manage", cascade = CascadeType.ALL)

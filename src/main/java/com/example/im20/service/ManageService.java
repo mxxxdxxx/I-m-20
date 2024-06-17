@@ -4,6 +4,7 @@ import com.example.im20.entity.*;
 import com.example.im20.repository.ManageRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class ManageService {
         this.manageRepository = manageRepository;
     }
 
-    public Manage createManage(Integer userId, Date manageDate, List<BreathingTraining> breathingTrainings, List<FluencyTraining> fluencyTrainings, List<PronunciationTraining> pronunciationTrainings) {
+    public Manage createManage(Integer userId, LocalDate manageDate, List<BreathingTraining> breathingTrainings, List<FluencyTraining> fluencyTrainings, List<PronunciationTraining> pronunciationTrainings) {
         Optional<User> optionalUser = userService.findUserById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();

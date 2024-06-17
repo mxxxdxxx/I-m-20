@@ -1,15 +1,15 @@
 package com.example.im20.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter @Setter
 @Table(name = "pronunciation_training")
 public class PronunciationTraining {
 
@@ -40,79 +40,7 @@ public class PronunciationTraining {
     private String ptStdVoice;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "manage_id", nullable = false)
     private Manage manage;
-
-    // Getters and Setters
-    public Integer getPronunciationTrainingId() {
-        return pronunciationTrainingId;
-    }
-
-    public void setPronunciationTrainingId(Integer pronunciationTrainingId) {
-        this.pronunciationTrainingId = pronunciationTrainingId;
-    }
-
-    public Integer getPtAccuracy() {
-        return ptAccuracy;
-    }
-
-    public void setPtAccuracy(Integer ptAccuracy) {
-        this.ptAccuracy = ptAccuracy;
-    }
-
-    public String getPtFeedback() {
-        return ptFeedback;
-    }
-
-    public void setPtFeedback(String ptFeedback) {
-        this.ptFeedback = ptFeedback;
-    }
-
-    public String getPtWords() {
-        return ptWords;
-    }
-
-    public void setPtWords(String ptWords) {
-        this.ptWords = ptWords;
-    }
-
-    public Integer getPtTimes() {
-        return ptTimes;
-    }
-
-    public void setPtTimes(Integer ptTimes) {
-        this.ptTimes = ptTimes;
-    }
-
-    public String getPtTeacher() {
-        return ptTeacher;
-    }
-
-    public void setPtTeacher(String ptTeacher) {
-        this.ptTeacher = ptTeacher;
-    }
-
-    public String getPtPic() {
-        return ptPic;
-    }
-
-    public void setPtPic(String ptPic) {
-        this.ptPic = ptPic;
-    }
-
-    public String getPtStdVoice() {
-        return ptStdVoice;
-    }
-
-    public void setPtStdVoice(String ptStdVoice) {
-        this.ptStdVoice = ptStdVoice;
-    }
-
-    public Manage getManage() {
-        return manage;
-    }
-
-    public void setManage(Manage manage) {
-        this.manage = manage;
-    }
 }
