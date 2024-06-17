@@ -213,9 +213,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
                   TextButton(
                     onPressed: () {
                       // ID / 비밀번호 찾기 기능 구현

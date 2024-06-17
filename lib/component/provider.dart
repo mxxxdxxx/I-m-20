@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:speakiz_im/model/user.dart';
+import 'package:speakiz_im/repository/user_repository.dart';
 
 class UserProvider with ChangeNotifier {
   User? _user;
+  final UserRepository _userRepository = UserRepository();
 
   User? get user => _user;
 
@@ -10,8 +12,10 @@ class UserProvider with ChangeNotifier {
     _user = user;
     notifyListeners();
   }
-  void clearUser() {
-    _user = null;
-    notifyListeners();
+
+  String get userLevelText {
+    if (_user == null) return '';
+    return _userRepository.getUserLevelText(_user!.userLevel ?? 0);
   }
+
 }

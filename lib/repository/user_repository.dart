@@ -117,7 +117,7 @@ class UserRepository {
 
 // 학부모용 비밀번호 불러오기
   Future<String> fetchuserParentPassword(int userId) async {
-    final response = await http.get(Uri.parse('$baseUrl/users/userParentPassword/$userId'));
+    final response = await http.get(Uri.parse('$baseUrl/users/$userId/userParentPassword'));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
@@ -126,6 +126,18 @@ class UserRepository {
       throw Exception('Failed to fetch parent password: ${response.statusCode}');
     }
   }
+
+  // 평균 지속 시간 불러오기
+  // Future<List<double>> fetchAverageDurations(int userId) async {
+  //   final response = await http.get(Uri.parse('$baseUrl/users/$userId/averageDurations'));
+  //
+  //   if (response.statusCode == 200) {
+  //     final data = jsonDecode(response.body);
+  //     return List<double>.from(data['averageDurations']);
+  //   } else {
+  //     throw Exception('Failed to fetch average durations: ${response.statusCode}');
+  //   }
+  // }
 }
 
 

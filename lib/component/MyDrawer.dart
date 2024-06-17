@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:speakiz_im/repository/user_repository.dart';
 
 class MyDrawer extends StatefulWidget {
+
   @override
   State<MyDrawer> createState() => _MyDrawerState();
 }
@@ -20,15 +21,17 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context);
     final user = userProvider.user;
-    final userLevelText = '';
 
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            height: 270.0,
+            height: 300.0,
             child: DrawerHeader(
+              decoration: BoxDecoration(
+                color: yellowColor,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -44,21 +47,16 @@ class _MyDrawerState extends State<MyDrawer> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
+                  SizedBox(height: 10.0),
                   Text(
                     '${user?.userName ?? '사용자'}님',
                     style: ts2.copyWith(fontWeight: FontWeight.w700),
                   ),
                   Text(
-                    '${userLevelText}',
+                    userProvider.userLevelText,
                     style: ts1.copyWith(fontSize: 15.0, fontWeight: FontWeight.w700),
                   ),
                 ],
-              ),
-              decoration: BoxDecoration(
-                color: yellowColor,
               ),
             ),
           ),

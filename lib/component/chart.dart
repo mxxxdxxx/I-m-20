@@ -31,7 +31,7 @@ class LineChartSample extends StatelessWidget {
                         }).toList(),
                         isCurved: false,
                         color: yellowColor,
-                        barWidth: 5,
+                        barWidth: 4,
                         dotData: FlDotData(
                           show: true,
                           getDotPainter: (spot, percent, barData, index) =>

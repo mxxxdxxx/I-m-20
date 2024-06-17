@@ -4,13 +4,12 @@ import 'package:speakiz_im/const/text.dart';
 import 'package:speakiz_im/component/MyAppBar.dart';
 import 'package:speakiz_im/component/MyDrawer.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'dart:io';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class BreathingExerciseScreen extends StatefulWidget {
   @override
-  State<BreathingExerciseScreen> createState() =>
-      _BreathingExerciseScreenState();
+  State<BreathingExerciseScreen> createState() => _BreathingExerciseScreenState();
 }
 
 class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
@@ -22,29 +21,58 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
       backgroundColor: backColor,
       body: Center(
         child: Container(
-            width: 1000.0,
-            height: 700.0,
-            child: breath_game(),
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: BreathGame(),
         ),
       ),
     );
   }
 }
 
-class breath_game extends StatefulWidget {
+class BreathGame extends StatefulWidget {
   @override
-  _breath_gameState createState() => _breath_gameState();
+  _BreathGameState createState() => _BreathGameState();
 }
 
-class _breath_gameState extends State<breath_game> {
+class _BreathGameState extends State<BreathGame> {
   InAppWebViewController? webView;
+
+  void logToServer(String message) async {
+    var url = Uri.parse('http://172.20.1.49:8000/log');
+    var response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'message': message}),
+    );
+    print('Log sent to server: ${response.statusCode}');
+  }
 
   @override
   Widget build(BuildContext context) {
     return InAppWebView(
-        initialUrlRequest: URLRequest(url: WebUri('http://localhost:5000/index.html')),
-        onWebViewCreated: (InAppWebViewController controller) {
-          webView = controller;
-        });
+      initialUrlRequest: URLRequest(
+        url: WebUri('http://172.20.1.49:5000/index.html'), // 서버 노트북의 IP 주소 사용
+      ),
+      onWebViewCreated: (InAppWebViewController controller) {
+        webView = controller;
+      },
+      onReceivedError: (controller, request, error) {
+        logToServer('Load error: ${error.description}');
+      },
+      onReceivedHttpError: (controller, request, response) {
+        logToServer('HTTP error: ${response.statusCode} ${response.reasonPhrase}');
+      },
+      onConsoleMessage: (controller, consoleMessage) {
+        logToServer('Console message: ${consoleMessage.message}');
+      },
+      androidOnPermissionRequest: (controller, origin, resources) async {
+        return PermissionRequestResponse(
+          resources: resources,
+          action: PermissionRequestResponseAction.GRANT,
+        );
+      },
+    );
   }
 }
+

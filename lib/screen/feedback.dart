@@ -40,86 +40,89 @@ class _feedbackState extends State<feedback> {
             SizedBox(
               height: 20.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      width: 500.0,
-                      height: 200.0,
-                      decoration: BoxDecoration(
-                        color: ywColor,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            spreadRadius: 0,
-                            blurRadius: 1,
-                            offset: Offset(1, 1),
-                          ),
-                        ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        width: 500.0,
+                        height: 200.0,
+                        decoration: BoxDecoration(
+                          color: ywColor,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              spreadRadius: 0,
+                              blurRadius: 1,
+                              offset: Offset(1, 1),
+                            ),
+                          ],
+                        ),
+                        child: LineChartSample(),
                       ),
-                      child: LineChartSample(),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => breathFB(),),
-                        );
-                      },
-                      child: Text(
-                        '호흡훈련',
-                        style: ts1.copyWith(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.0,
-                          color: navyColor,
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => breathFB(),),
+                          );
+                        },
+                        child: Text(
+                          '호흡훈련',
+                          style: ts1.copyWith(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18.0,
+                            color: navyColor,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 30.0,
-                ),
-                Column(
-                  children: [
-                    Container(
-                      width: 500.0,
-                      height: 200.0,
-                      decoration: BoxDecoration(
-                        color: ywColor,
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            spreadRadius: 0,
-                            blurRadius: 1,
-                            offset: Offset(1, 1),
-                          ),
-                        ],
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => pronunFB(),),
-                        );
-                      },
-                      child: Text(
-                        '조음훈련',
-                        style: ts1.copyWith(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.0,
-                          color: navyColor,
+                    ],
+                  ),
+                  SizedBox(
+                    width: 30.0,
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        width: 500.0,
+                        height: 200.0,
+                        decoration: BoxDecoration(
+                          color: ywColor,
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              spreadRadius: 0,
+                              blurRadius: 1,
+                              offset: Offset(1, 1),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => pronunFB(),),
+                          );
+                        },
+                        child: Text(
+                          '조음훈련',
+                          style: ts1.copyWith(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18.0,
+                            color: navyColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             Column(
               children: [

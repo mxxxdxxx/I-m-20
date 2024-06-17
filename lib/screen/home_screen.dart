@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Positioned(
             left: 0,
             right: 0,
-            top: 85,
+            top: 100,
             child: SvgPicture.asset(
               'assets/images/AppLogo.svg',
               width: 330,
