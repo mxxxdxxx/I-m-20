@@ -1,5 +1,6 @@
 package com.example.im20.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,7 @@ public class Manage {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonManagedReference
     private User user;
 
     @OneToMany(mappedBy = "manage", cascade = CascadeType.ALL)

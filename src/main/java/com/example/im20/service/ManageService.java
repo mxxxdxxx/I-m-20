@@ -1,6 +1,7 @@
 package com.example.im20.service;
 
 import com.example.im20.entity.*;
+import com.example.im20.repository.ManageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,13 +12,15 @@ import java.util.Optional;
 public class ManageService {
 
     private final UserService userService;
+    private final ManageRepository manageRepository;
 
-    public ManageService(UserService userService) {
+    public ManageService(UserService userService, ManageRepository manageRepository) {
         this.userService = userService;
+        this.manageRepository = manageRepository;
     }
 
-    public Manage createManage(Integer clientId, Date manageDate, List<BreathingTraining> breathingTrainings, List<FluencyTraining> fluencyTrainings, List<PronunciationTraining> pronunciationTrainings) {
-        Optional<User> optionalUser = userService.findUserById(clientId);
+    public Manage createManage(Integer userId, Date manageDate, List<BreathingTraining> breathingTrainings, List<FluencyTraining> fluencyTrainings, List<PronunciationTraining> pronunciationTrainings) {
+        Optional<User> optionalUser = userService.findUserById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
@@ -30,11 +33,12 @@ public class ManageService {
                     .pronunciationTrainings(pronunciationTrainings)
                     .build();
 
-            // 필요에 따라 Manage 객체를 저장하거나 다른 작업 수행
+            // Manage 객체를 저장
+            manageRepository.save(manage);
 
             return manage;
         } else {
-            throw new IllegalArgumentException("User with ID " + clientId + " not found.");
+            throw new IllegalArgumentException("User with ID " + userId + " not found.");
         }
     }
 }

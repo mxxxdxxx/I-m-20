@@ -1,7 +1,10 @@
 package com.example.im20.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 
 @Entity
@@ -50,6 +53,7 @@ public class User {
     @Column(name = "user_level")
     private Integer userLevel;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Manage> manages
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    private List<Manage> manages;
 }

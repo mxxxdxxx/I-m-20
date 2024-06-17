@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/manage")
+@RequestMapping("/manages")
 public class ManageController {
 
     @Autowired
@@ -63,7 +63,7 @@ public class ManageController {
     }
 
     // BreathingTraining 생성
-    @PostMapping("/{manageId}/breathing-training")
+    @PostMapping("/{manageId}/bt")
     public BreathingTraining createBreathingTraining(@PathVariable Integer manageId, @RequestBody BreathingTraining breathingTraining) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
@@ -72,7 +72,7 @@ public class ManageController {
     }
 
     // FluencyTraining 생성
-    @PostMapping("/{manageId}/fluency-training")
+    @PostMapping("/{manageId}/ft")
     public FluencyTraining createFluencyTraining(@PathVariable Integer manageId, @RequestBody FluencyTraining fluencyTraining) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
@@ -81,7 +81,7 @@ public class ManageController {
     }
 
     // PronunciationTraining 생성
-    @PostMapping("/{manageId}/pronunciation-training")
+    @PostMapping("/{manageId}/pt")
     public PronunciationTraining createPronunciationTraining(@PathVariable Integer manageId, @RequestBody PronunciationTraining pronunciationTraining) {
         Manage manage = manageRepository.findById(manageId)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 Manage ID입니다."));
@@ -90,7 +90,7 @@ public class ManageController {
     }
 
     // BreathingTraining 업데이트
-    @PutMapping("/breathing-training/{id}")
+    @PutMapping("/bt/{id}")
     public BreathingTraining updateBreathingTraining(@PathVariable Integer id, @RequestBody BreathingTraining breathingTrainingDetails) {
         BreathingTraining breathingTraining = breathingTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 BreathingTraining ID입니다."));
@@ -109,7 +109,7 @@ public class ManageController {
     }
 
     // FluencyTraining 업데이트
-    @PutMapping("/fluency-training/{id}")
+    @PutMapping("/ft/{id}")
     public FluencyTraining updateFluencyTraining(@PathVariable Integer id, @RequestBody FluencyTraining fluencyTrainingDetails) {
         FluencyTraining fluencyTraining = fluencyTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 FluencyTraining ID입니다."));
@@ -120,7 +120,7 @@ public class ManageController {
     }
 
     // PronunciationTraining 업데이트
-    @PutMapping("/pronunciation-training/{id}")
+    @PutMapping("/pt/{id}")
     public PronunciationTraining updatePronunciationTraining(@PathVariable Integer id, @RequestBody PronunciationTraining pronunciationTrainingDetails) {
         PronunciationTraining pronunciationTraining = pronunciationTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 PronunciationTraining ID입니다."));
@@ -137,7 +137,7 @@ public class ManageController {
     }
 
     // BreathingTraining 삭제
-    @DeleteMapping("/breathing-training/{id}")
+    @DeleteMapping("/bt/{id}")
     public void deleteBreathingTraining(@PathVariable Integer id) {
         BreathingTraining breathingTraining = breathingTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 BreathingTraining ID입니다."));
@@ -145,7 +145,7 @@ public class ManageController {
     }
 
     // FluencyTraining 삭제
-    @DeleteMapping("/fluency-training/{id}")
+    @DeleteMapping("/ft/{id}")
     public void deleteFluencyTraining(@PathVariable Integer id) {
         FluencyTraining fluencyTraining = fluencyTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 FluencyTraining ID입니다."));
@@ -153,7 +153,7 @@ public class ManageController {
     }
 
     // PronunciationTraining 삭제
-    @DeleteMapping("/pronunciation-training/{id}")
+    @DeleteMapping("/pt/{id}")
     public void deletePronunciationTraining(@PathVariable Integer id) {
         PronunciationTraining pronunciationTraining = pronunciationTrainingRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 PronunciationTraining ID입니다."));
