@@ -24,10 +24,25 @@ class _survey_buttonState extends State<survey_button> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 500.0,
+      width: 700.0,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          ElevatedButton(
+            onPressed: () => handleButtonClick(10),
+            style: ButtonStyle(
+              backgroundColor: selectedIndex == 10
+                  ? MaterialStateProperty.all<Color>(Colors.yellow)
+                  : null,
+            ),
+            child: Text(
+              '매우 그렇지 않다',
+              style: ts1.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17.0,
+                  color: Colors.black),
+            ),
+          ),
           ElevatedButton(
             onPressed: () => handleButtonClick(30),
             style: ButtonStyle(
@@ -39,6 +54,7 @@ class _survey_buttonState extends State<survey_button> {
               '그렇지 않다',
               style: ts1.copyWith(
                   fontWeight: FontWeight.w700,
+                  fontSize: 17.0,
                   color: Colors.black),
             ),
           ),
@@ -50,9 +66,10 @@ class _survey_buttonState extends State<survey_button> {
                   : null,
             ),
             child: Text(
-              '그런 편이다',
+              '보통이다',
               style: ts1.copyWith(
                   fontWeight: FontWeight.w700,
+                  fontSize: 17.0,
                   color: Colors.black),
             ),
           ),
@@ -64,9 +81,25 @@ class _survey_buttonState extends State<survey_button> {
                   : null,
             ),
             child: Text(
+              '그렇다',
+              style: ts1.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 17.0,
+                  color: Colors.black),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () => handleButtonClick(90),
+            style: ButtonStyle(
+              backgroundColor: selectedIndex == 90
+                  ? MaterialStateProperty.all<Color>(Colors.yellow)
+                  : null,
+            ),
+            child: Text(
               '매우 그렇다',
               style: ts1.copyWith(
                   fontWeight: FontWeight.w700,
+                  fontSize: 17.0,
                   color: Colors.black),
             ),
           ),

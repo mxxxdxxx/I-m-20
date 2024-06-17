@@ -4,6 +4,7 @@ import 'package:speakiz/component/img_float.dart';
 import 'package:speakiz/screen/login.dart';
 import 'package:speakiz/const/color.dart';
 import 'package:speakiz/const/text.dart';
+import 'package:speakiz/screen/signUp.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Login()),
+                    MaterialPageRoute(builder: (context) => Signup()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

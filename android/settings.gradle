@@ -23,4 +23,6 @@ plugins {
     id "org.jetbrains.kotlin.android" version "1.7.10" apply false
 }
 
-include ":app"
+include ':app'
+include ':unityLibrary'
+project(':unityLibrary').projectDir = new File(rootProject.projectDir, '../unityLibrary')

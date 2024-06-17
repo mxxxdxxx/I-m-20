@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:speakiz/component/provider.dart';
 import 'package:speakiz/model/user.dart';
 import 'package:speakiz/repository/user_repository.dart';
+import 'package:speakiz/screen/signUp.dart';
 import 'package:speakiz/screen/survey.dart';
 import 'home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,39 +30,39 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isPasswordFocused = false;
   final UserRepository userRepository = UserRepository(baseUrl: 'http://10.0.2.2:8080');
 
-  Future<void> _login() async {
-    print('로그인 버튼이 눌렸습니다.');
-    if (_formKey.currentState!.validate()) {
-      try {
-        print('로그인 시도중...');
-        final user = await userRepository.login(
-          _idController.text,
-          _passwordController.text,
-        );
+  // Future<void> _login() async {
+  //   print('로그인 버튼이 눌렸습니다.');
+  //   if (_formKey.currentState!.validate()) {
+  //     try {
+  //       print('로그인 시도중...');
+  //       final user = await userRepository.login(
+  //         _idController.text,
+  //         _passwordController.text,
+  //       );
 
-        if (user != null) {
-          print('로그인 성공: ${user.userLoginId}');
-          // 로그인 성공 시 test1 페이지로 이동
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => test1()),
-          );
-        } else {
-          print('로그인 실패: 사용자 정보가 null입니다.');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('로그인 실패: 사용자 정보가 없습니다.')),
-          );
-        }
-      } catch (e) {
-        print('Error during login: $e');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('서버 연결 실패: $e')),
-        );
-      }
-    } else {
-      print('Form validation failed');
-    }
-  }
+  //       if (user != null) {
+  //         print('로그인 성공: ${user.userLoginId}');
+  //         // 로그인 성공 시 test1 페이지로 이동
+  //         Navigator.pushReplacement(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => test1()),
+  //         );
+  //       } else {
+  //         print('로그인 실패: 사용자 정보가 null입니다.');
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           SnackBar(content: Text('로그인 실패: 사용자 정보가 없습니다.')),
+  //         );
+  //       }
+  //     } catch (e) {
+  //       print('Error during login: $e');
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text('서버 연결 실패: $e')),
+  //       );
+  //     }
+  //   } else {
+  //     print('Form validation failed');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +176,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         print('Login button pressed');
-                        _login();
+                        // _login();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => test1()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: navyColor,
@@ -194,7 +199,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      // 회원가입 기능 구현
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => test1()),
+                      );
                     },
                     child: Text(
                       '회원가입',

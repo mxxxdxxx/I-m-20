@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 34
+    buildToolsVersion '34.0.0'
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 34
+        versionCode 1
+        versionName '1.0.2'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        noCompress = ['.unity3d', '.ress', '.resource', '.obb', '.bundle', '.unityexp']
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }
+
+    packagingOptions {
+        doNotStrip '*/x86/*.so'
+        doNotStrip '*/x86_64/*.so'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            consumerProguardFiles 'proguard-unity.txt'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["src/main/jniLibs"]
+        }
+    }
+
+    configurations {
+        create("debug")
+        create("release")
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    // 필요한 경우 다른 의존성 추가
+}

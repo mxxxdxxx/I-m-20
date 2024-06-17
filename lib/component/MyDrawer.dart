@@ -41,10 +41,10 @@ class MyDrawer extends StatelessWidget {
                         '김덕우님',
                         style: ts2.copyWith(fontWeight: FontWeight.w700),
                       ),
-                  Text(
-                    'Level: 기초',
-                    style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
-                  ),
+                  // Text(
+                  //   '기초',
+                  //   style: ts1.copyWith(fontSize: 15.0,fontWeight: FontWeight.w700),
+                  // ),
                     ],
                   ),
               decoration: BoxDecoration(
