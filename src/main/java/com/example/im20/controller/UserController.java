@@ -1,9 +1,12 @@
 package com.example.im20.controller;
 
 import com.example.im20.entity.User;
+import com.example.im20.repository.UserRepository;
 import com.example.im20.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +19,11 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    private final UserRepository userRepository;
 
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 //    @PostMapping("/login")
 //    public ResponseEntity<User> loginUser(@RequestBody User user) {
 //        Optional<User> existingUser = userService.findByUserLoginId(user.getUserLoginId());
@@ -88,6 +95,16 @@ public class UserController {
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
+    }
+
+    /**
+     * 구글 소셜 로그인
+     *
+     */
+    @GetMapping("/login/oauth2/google")
+    public User getUserInfo(@AuthenticationPrincipal OAuth2User principal) {
+        String email = principal.getAttribute("email");
+        return userRepository.findByUserEmail(email).orElseThrow(() -> new IllegalStateException("User not found"));
     }
 
     /**
