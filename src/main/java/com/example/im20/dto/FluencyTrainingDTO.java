@@ -1,5 +1,6 @@
 package com.example.im20.dto;
 
+import com.example.im20.entity.FluencyTraining;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,25 +11,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FluencyTrainingDTO {
-    private Integer ftId;
-    private String ftFeedback;
+
+    private Integer fluencyTrainingId;
     private Integer manageId;
 
-    public Integer getFtId() {
-        return ftId;
-    }
-
-    public void setFtId(Integer btId) {
-        this.ftId = ftId;
-    }
-
     // Getters and Setters
-    public String getFtFeedback() {
-        return ftFeedback;
+    public Integer getFluencyTrainingId() {
+        return fluencyTrainingId;
     }
 
-    public void setFtFeedback(String ftFeedback) {
-        this.ftFeedback = ftFeedback;
+    public FluencyTrainingDTO(FluencyTraining entity) {
+        this.fluencyTrainingId = entity.getFluencyTrainingId();
+        this.manageId = entity.getManage().getManageId();
+    }
+
+    public void setFluencyTrainingId(Integer fluencyTrainingId) {
+        this.fluencyTrainingId = fluencyTrainingId;
     }
 
     public Integer getManageId() {

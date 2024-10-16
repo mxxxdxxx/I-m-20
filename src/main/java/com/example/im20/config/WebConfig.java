@@ -20,7 +20,7 @@ public class WebConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())  // CSRF 비활성화
+                .csrf(csrf -> csrf.disable())  // 필요시 CSRF 비활성화 (API 또는 다른 이유에 대한 주석 추가)
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/", "/login", "/oauth2/**", "/email/**").permitAll()  // 로그인 및 특정 요청 허용
                         .anyRequest().authenticated()  // 그 외 요청은 인증 필요
@@ -34,8 +34,46 @@ public class WebConfig {
                             // 로그인 성공 후 처리 로직
                             response.sendRedirect("/home");
                         })
+                        .failureHandler((request, response, authentication) -> {
+                            // 로그인 실패 시 처리 로직
+                            response.sendRedirect("/login?error=true"); // 실패 시 리다이렉트
+                        })
                 );
 
         return http.build();
     }
 }
+
+
+//@Configuration
+//@EnableWebSecurity
+//public class WebConfig {
+//
+//    private final CustomOAuth2UserService customOAuth2UserService;
+//
+//    public WebConfig(CustomOAuth2UserService customOAuth2UserService) {
+//        this.customOAuth2UserService = customOAuth2UserService;
+//    }
+//
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(csrf -> csrf.disable())  // CSRF 비활성화
+//                .authorizeHttpRequests(authz -> authz
+//                        .requestMatchers("/", "/login", "/oauth2/**", "/email/**").permitAll()  // 로그인 및 특정 요청 허용
+//                        .anyRequest().authenticated()  // 그 외 요청은 인증 필요
+//                )
+//                .oauth2Login(oauth2 -> oauth2
+//                        .loginPage("/login")  // 로그인 페이지 설정
+//                        .userInfoEndpoint(userInfo -> userInfo
+//                                .userService(customOAuth2UserService)  // CustomOAuth2UserService로 사용자 정보 처리
+//                        )
+//                        .successHandler((request, response, authentication) -> {
+//                            // 로그인 성공 후 처리 로직
+//                            response.sendRedirect("/home");
+//                        })
+//                );
+//
+//        return http.build();
+//    }
+//}

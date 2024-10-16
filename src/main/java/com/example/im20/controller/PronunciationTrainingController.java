@@ -1,10 +1,9 @@
 package com.example.im20.controller;
 
 import com.example.im20.dto.PronunciationTrainingDTO;
-import com.example.im20.entity.Manage;
-import com.example.im20.entity.PronunciationTraining;
-import com.example.im20.service.GameService;
+import com.example.im20.service.PronunciationTrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,27 +11,30 @@ import org.springframework.web.bind.annotation.*;
 public class PronunciationTrainingController {
 
     @Autowired
-    private GameService gameService;
+    private PronunciationTrainingService pronunciationTrainingService;
 
     @PostMapping("/{manageId}")
-    public PronunciationTraining savePronunciationTraining(@PathVariable Integer manageId, @RequestBody PronunciationTrainingDTO pronunciationTrainingDTO) {
-        PronunciationTraining pronunciationTraining = toEntity(pronunciationTrainingDTO);
-        return gameService.savePronunciationTraining(pronunciationTraining, manageId);
+    public ResponseEntity<PronunciationTrainingDTO> savePronunciationTraining(
+            @PathVariable Integer manageId,
+            @RequestBody PronunciationTrainingDTO pronunciationTrainingDTO) {
+
+        pronunciationTrainingDTO.setManageId(manageId);
+        PronunciationTrainingDTO savedPronunciationTraining = pronunciationTrainingService.savePronunciationTraining(pronunciationTrainingDTO);
+        return ResponseEntity.ok(savedPronunciationTraining);
     }
 
-    private PronunciationTraining toEntity(PronunciationTrainingDTO dto) {
-        return PronunciationTraining.builder()
-                .pronunciationTrainingId(dto.getPtId())
-                .ptAccuracy(dto.getPtAccuracy())
-                .ptFeedback(dto.getPtFeedback())
-                .ptWords(dto.getPtWords())
-                .ptTimes(dto.getPtTimes())
-                .ptTeacher(dto.getPtTeacher())
-                .ptPic(dto.getPtPic())
-                .ptStdVoice(dto.getPtStdVoice())
-                .manage(Manage.builder().manageId(dto.getManageId()).build())
-                .build();
+    @GetMapping("/{id}")
+    public ResponseEntity<PronunciationTrainingDTO> getPronunciationTrainingById(@PathVariable Integer id) {
+        // PronunciationTrainingDTO를 가져오는 메서드를 추가하세요
+        PronunciationTrainingDTO pronunciationTraining = pronunciationTrainingService.getPronunciationTrainingById(id);
+
+        // 오디오 데이터는 Base64로 디코딩할 필요가 없습니다. 그냥 전송할 수 있습니다.
+        return ResponseEntity.ok(pronunciationTraining);
     }
+}
+
+
+
 
 //    @PostMapping("/{manageId}")
 //    public PronunciationTraining savePronunciationTraining(@PathVariable Integer manageId, @RequestBody PronunciationTraining pronunciationTraining) {
@@ -52,4 +54,4 @@ public class PronunciationTrainingController {
 //        // PronunciationTraining 저장
 //        return pronunciationTrainingRepository.save(pronunciationTraining);
 //    }
-}
+

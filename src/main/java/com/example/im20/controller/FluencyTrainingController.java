@@ -1,35 +1,53 @@
 package com.example.im20.controller;
 
 import com.example.im20.dto.FluencyTrainingDTO;
-import com.example.im20.entity.FluencyTraining;
-import com.example.im20.entity.Manage;
-import com.example.im20.repository.BreathingTrainingRepository;
-import com.example.im20.repository.FluencyTrainingRepository;
-import com.example.im20.repository.ManageRepository;
-import com.example.im20.service.GameService;
+import com.example.im20.service.FluencyTrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/trainings/ft")
+@RequestMapping("/fluency-training")
 public class FluencyTrainingController {
 
     @Autowired
-    private GameService gameService;
+    private FluencyTrainingService fluencyTrainingService;
 
-    @PostMapping("/{manageId}")
-    public FluencyTraining saveFluencyTraining(@PathVariable Integer manageId, @RequestBody FluencyTrainingDTO fluencyTrainingDTO) {
-        FluencyTraining fluencyTraining = toEntity(fluencyTrainingDTO);
-        return gameService.saveFluencyTraining(fluencyTraining, manageId);
+    @PostMapping
+    public ResponseEntity<FluencyTrainingDTO> createFluencyTraining(@RequestBody FluencyTrainingDTO fluencyTrainingDTO) {
+        FluencyTrainingDTO createdFluencyTraining = fluencyTrainingService.saveFluencyTraining(fluencyTrainingDTO);
+        return ResponseEntity.ok(createdFluencyTraining);
     }
 
-    private FluencyTraining toEntity(FluencyTrainingDTO dto) {
-        return FluencyTraining.builder()
-                .fluencyTrainingId(dto.getFtId())
-                .ftFeedback(dto.getFtFeedback())
-                .manage(Manage.builder().manageId(dto.getManageId()).build())
-                .build();
+    @GetMapping("/{id}")
+    public ResponseEntity<FluencyTrainingDTO> getFluencyTrainingById(@PathVariable Integer id) {
+        Optional<FluencyTrainingDTO> fluencyTraining = fluencyTrainingService.getFluencyTrainingById(id);
+        return fluencyTraining.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<FluencyTrainingDTO> updateFluencyTraining(@PathVariable Integer id, @RequestBody FluencyTrainingDTO fluencyTrainingDTO) {
+        FluencyTrainingDTO updatedFluencyTraining = fluencyTrainingService.saveFluencyTraining(fluencyTrainingDTO);
+        return ResponseEntity.ok(updatedFluencyTraining);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFluencyTraining(@PathVariable Integer id) {
+        fluencyTrainingService.deleteFluencyTraining(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FluencyTrainingDTO>> getAllFluencyTrainings() {
+        List<FluencyTrainingDTO> fluencyTrainings = fluencyTrainingService.getAllFluencyTrainings();
+        return ResponseEntity.ok(fluencyTrainings);
+    }
+}
+
+
 
 
 //    @PostMapping("/{manageId}")
@@ -49,4 +67,4 @@ public class FluencyTrainingController {
 //        // FluencyTraining 저장
 //        return fluencyTrainingRepository.save(fluencyTraining);
 //    }
-}
+

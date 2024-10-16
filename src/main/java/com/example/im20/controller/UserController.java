@@ -90,6 +90,19 @@ public class UserController {
         }
     }
 
+    /**
+     * 구글 소셜 로그인
+     * DB에 저장될 소셜 로그인 번호 = 1
+     */
+    @GetMapping("/login/oauth2/google")
+    public User getUserInfo(@AuthenticationPrincipal OAuth2User principal) {
+        String email = principal.getAttribute("email");
+        return userRepository.findByUserEmail(email).orElseThrow(() -> new IllegalStateException("User not found"));
+    }
+
+    /**
+     * 회원가입
+     */
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
@@ -97,15 +110,6 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
-    /**
-     * 구글 소셜 로그인
-     *
-     */
-    @GetMapping("/login/oauth2/google")
-    public User getUserInfo(@AuthenticationPrincipal OAuth2User principal) {
-        String email = principal.getAttribute("email");
-        return userRepository.findByUserEmail(email).orElseThrow(() -> new IllegalStateException("User not found"));
-    }
 
     /**
      * 원래

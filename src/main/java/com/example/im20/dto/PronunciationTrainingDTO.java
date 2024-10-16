@@ -1,88 +1,57 @@
 package com.example.im20.dto;
 
+import com.example.im20.entity.PronunciationTraining;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class PronunciationTrainingDTO {
-    private Integer ptId;
-    private Integer ptAccuracy;
-    private String ptFeedback;
-    private String ptWords;
-    private Integer ptTimes;
-    private String ptTeacher;
-    private String ptPic;
-    private String ptStdVoice;
+
+    private Integer pronunciationTrainingId;
+    private Integer ptAttempt;
+    private Boolean ptSuccessCnt;
     private Integer manageId;
 
-    public Integer getPtId() {
-        return ptId;
+    public PronunciationTrainingDTO(PronunciationTraining entity) {
+        this.pronunciationTrainingId = entity.getPronunciationTrainingId();
+        this.ptAttempt = entity.getPtAttempt();
+        this.ptSuccessCnt = entity.getPtSuccessCnt();
+        this.manageId = entity.getManage().getManageId();
     }
 
-    public void setPtId(Integer ptId) {
-        this.ptId = ptId;
-    }
+    // 발음 훈련 세부 항목들 (Details)
+    private List<PronunciationTrainingDetailsDTO> details; // 추가됨
 
     // Getters and Setters
-    public Integer getPtAccuracy() {
-        return ptAccuracy;
+    public Integer getPronunciationTrainingId() {
+        return pronunciationTrainingId;
     }
 
-    public void setPtAccuracy(Integer ptAccuracy) {
-        this.ptAccuracy = ptAccuracy;
+    public void setPronunciationTrainingId(Integer pronunciationTrainingId) {
+        this.pronunciationTrainingId = pronunciationTrainingId;
     }
 
-    public String getPtFeedback() {
-        return ptFeedback;
+    public Integer getPtAttempt() {
+        return ptAttempt;
     }
 
-    public void setPtFeedback(String ptFeedback) {
-        this.ptFeedback = ptFeedback;
+    public void setPtAttempt(Integer ptAttempt) {
+        this.ptAttempt = ptAttempt;
     }
 
-    public String getPtWords() {
-        return ptWords;
+    public Boolean getPtSuccessCnt() {
+        return ptSuccessCnt;
     }
 
-    public void setPtWords(String ptWords) {
-        this.ptWords = ptWords;
-    }
-
-    public Integer getPtTimes() {
-        return ptTimes;
-    }
-
-    public void setPtTimes(Integer ptTimes) {
-        this.ptTimes = ptTimes;
-    }
-
-    public String getPtTeacher() {
-        return ptTeacher;
-    }
-
-    public void setPtTeacher(String ptTeacher) {
-        this.ptTeacher = ptTeacher;
-    }
-
-    public String getPtPic() {
-        return ptPic;
-    }
-
-    public void setPtPic(String ptPic) {
-        this.ptPic = ptPic;
-    }
-
-    public String getPtStdVoice() {
-        return ptStdVoice;
-    }
-
-    public void setPtStdVoice(String ptStdVoice) {
-        this.ptStdVoice = ptStdVoice;
+    public void setPtSuccessCnt(Boolean ptSuccessCnt) {
+        this.ptSuccessCnt = ptSuccessCnt;
     }
 
     public Integer getManageId() {
