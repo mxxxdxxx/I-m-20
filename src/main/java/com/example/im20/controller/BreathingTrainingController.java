@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/trainings/bt")
 public class BreathingTrainingController {
@@ -16,37 +13,27 @@ public class BreathingTrainingController {
     @Autowired
     private BreathingTrainingService breathingTrainingService;
 
-    @PostMapping
-    public ResponseEntity<BreathingTrainingDTO> createBreathingTraining(@RequestBody BreathingTrainingDTO breathingTrainingDTO) {
-        BreathingTrainingDTO createdBreathingTraining = breathingTrainingService.saveBreathingTraining(breathingTrainingDTO);
-        return ResponseEntity.ok(createdBreathingTraining);
+    @PostMapping("/{manageId}")
+    public ResponseEntity<BreathingTrainingDTO> saveBreathingTraining(
+            @PathVariable Integer manageId,
+            @RequestBody BreathingTrainingDTO breathingTrainingDTO) {
+
+        // manageId 설정
+        breathingTrainingDTO.setManageId(manageId);
+
+        // BreathingTraining 요약과 세부 정보 저장
+        BreathingTrainingDTO savedBreathingTraining = breathingTrainingService.saveBreathingTraining(breathingTrainingDTO);
+        return ResponseEntity.ok(savedBreathingTraining);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<BreathingTrainingDTO> getBreathingTrainingById(@PathVariable Integer id) {
-        Optional<BreathingTrainingDTO> breathingTraining = breathingTrainingService.getBreathingTrainingById(id);
-        return breathingTraining.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        // ID로 BreathingTraining을 가져와 요약과 세부 정보 반환
+        BreathingTrainingDTO breathingTraining = breathingTrainingService.getBreathingTrainingById(id);
+        return ResponseEntity.ok(breathingTraining);
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<BreathingTrainingDTO> updateBreathingTraining(@PathVariable Integer id, @RequestBody BreathingTrainingDTO breathingTrainingDTO) {
-        BreathingTrainingDTO updatedBreathingTraining = breathingTrainingService.updateBreathingTraining(id, breathingTrainingDTO);
-        return ResponseEntity.ok(updatedBreathingTraining);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBreathingTraining(@PathVariable Integer id) {
-        breathingTrainingService.deleteBreathingTraining(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping
-    public ResponseEntity<List<BreathingTrainingDTO>> getAllBreathingTrainings() {
-        List<BreathingTrainingDTO> breathingTrainings = breathingTrainingService.getAllBreathingTrainings();
-        return ResponseEntity.ok(breathingTrainings);
-    }
-
 }
+
 
 
 //@RestController
