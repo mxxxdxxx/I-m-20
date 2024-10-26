@@ -32,11 +32,9 @@ public class BreathingTrainingService {
         Manage manage = manageRepository.findById(dto.getManageId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid manage ID"));
 
-        // Save BreathingTraining summary
         BreathingTraining breathingTraining = toEntity(dto, manage);
         BreathingTraining savedBreathingTraining = breathingTrainingRepository.save(breathingTraining);
 
-        // Save BreathingTraining details
         List<BreathingTrainingDetails> detailsList = dto.getDetails().stream()
                 .map(detailDTO -> toDetailsEntity(detailDTO, savedBreathingTraining))
                 .collect(Collectors.toList());
@@ -74,7 +72,7 @@ public class BreathingTrainingService {
                 .collect(Collectors.toList());
 
         return BreathingTrainingDTO.builder()
-                .btSummaryId(entity.getBtSummaryId())
+                .breathingTrainingId(entity.getBreathingTrainingId())
                 .manageId(entity.getManage().getManageId())
                 .totalBreaths(entity.getTotalBreaths())
                 .averageLength(entity.getAverageLength())
@@ -85,8 +83,8 @@ public class BreathingTrainingService {
 
     private BreathingTrainingDetailsDTO toDetailsDTO(BreathingTrainingDetails entity) {
         return BreathingTrainingDetailsDTO.builder()
-                .breathingTrainingId(entity.getBreathingTrainingId())
-                .btSummaryId(entity.getBtSummary().getBtSummaryId())
+                .btDetailId(entity.getBtDetailId())
+                .btSummaryId(entity.getBtSummary().getBreathingTrainingId())
                 .btLength(entity.getBtLength())
                 .btLevel1(entity.getBtLevel1())
                 .btLevel2(entity.getBtLevel2())

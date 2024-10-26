@@ -3,6 +3,8 @@ package com.example.im20.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Builder
 @AllArgsConstructor
@@ -25,4 +27,11 @@ public class PronunciationTraining {
     @ManyToOne
     @JoinColumn(name = "manage_id", nullable = false)
     private Manage manage;
+
+    @OneToMany(mappedBy = "pronunciationTraining", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PronunciationTrainingDetails> details;
+
+    public List<PronunciationTrainingDetails> getDetails() {
+        return details;
+    }
 }

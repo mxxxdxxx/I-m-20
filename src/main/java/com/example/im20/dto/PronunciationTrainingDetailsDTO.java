@@ -1,12 +1,15 @@
 package com.example.im20.dto;
 
-import com.example.im20.entity.PronunciationTraining;
 import com.example.im20.entity.PronunciationTrainingDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+/**
+ * Data 어노테이션으로 굳이 getter/setter 메소드를 추가하지 않아도 됨
+ */
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,10 +24,10 @@ public class PronunciationTrainingDetailsDTO {
     private String ptTeacherVoice;
     private Integer ptScore;
     private String ptFeedback;
-    private Integer index;
+    private Integer ptIndex; // 필드명을 일관되게 수정
 
     public PronunciationTrainingDetailsDTO(PronunciationTrainingDetails entity) {
-        this.detailId = entity.getDetailId();
+        this.detailId = entity.getPtDetailId();
         this.pronunciationTrainingId = entity.getPronunciationTraining().getPronunciationTrainingId();
         this.ptWord = entity.getPtWord();
         this.ptText = entity.getPtText();
@@ -32,8 +35,9 @@ public class PronunciationTrainingDetailsDTO {
         this.ptTeacherVoice = entity.getPtTeacherVoice();
         this.ptScore = entity.getPtScore();
         this.ptFeedback = entity.getPtFeedback();
-        this.index = entity.getIndex();
+        this.ptIndex = entity.getPtIndex();
     }
+
 
     // Getters and Setters
     public Integer getDetailId() {
@@ -101,10 +105,10 @@ public class PronunciationTrainingDetailsDTO {
     }
 
     public Integer getIndex() {
-        return index;
+        return ptIndex;
     }
 
     public void setIndex(Integer index) {
-        this.index = index;
+        this.ptIndex = ptIndex;
     }
 }

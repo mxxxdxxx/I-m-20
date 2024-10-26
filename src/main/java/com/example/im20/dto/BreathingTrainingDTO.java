@@ -14,15 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 public class BreathingTrainingDTO {
 
-    private Integer btSummaryId;
+    private Integer breathingTrainingId; // ID 필드 추가
     private Integer manageId;
     private Integer totalBreaths;
     private Float averageLength;
     private Integer totalSuccessCnt;
-    private List<BreathingTrainingDetailsDTO> details; // 세부 정보 추가
+    private List<BreathingTrainingDetailsDTO> details;
 
     public BreathingTrainingDTO(BreathingTraining entity) {
-        this.btSummaryId = entity.getBtSummaryId();
+        this.breathingTrainingId = entity.getBreathingTrainingId();
         this.manageId = entity.getManage().getManageId();
         this.totalBreaths = entity.getTotalBreaths();
         this.averageLength = entity.getAverageLength();

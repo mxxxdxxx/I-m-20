@@ -13,8 +13,8 @@ public class PronunciationTrainingDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "detail_id")
-    private Integer detailId;
+    @Column(name = "pt_detail_id")
+    private Integer ptDetailId;
 
     @ManyToOne
     @JoinColumn(name = "pronunciation_training_id", nullable = false)
@@ -38,6 +38,6 @@ public class PronunciationTrainingDetails {
     @Column(name = "pt_feedback", nullable = true)
     private String ptFeedback;
 
-    @Column(name = "index", nullable = false)
-    private Integer index;
+    @Column(name = "pt_index", nullable = false)
+    private Integer ptIndex;
 }

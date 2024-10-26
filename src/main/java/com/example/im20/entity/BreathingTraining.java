@@ -15,8 +15,8 @@ public class BreathingTraining {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bt_summary_id")
-    private Integer btSummaryId;
+    @Column(name = "breathing_training_id")
+    private Integer breathingTrainingId;
 
     @ManyToOne
     @JoinColumn(name = "manage_id", nullable = false)

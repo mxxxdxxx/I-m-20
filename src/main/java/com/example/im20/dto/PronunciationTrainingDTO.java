@@ -18,16 +18,15 @@ public class PronunciationTrainingDTO {
     private Integer ptAttempt;
     private Boolean ptSuccessCnt;
     private Integer manageId;
+    private List<PronunciationTrainingDetailsDTO> details;
 
     public PronunciationTrainingDTO(PronunciationTraining entity) {
         this.pronunciationTrainingId = entity.getPronunciationTrainingId();
         this.ptAttempt = entity.getPtAttempt();
         this.ptSuccessCnt = entity.getPtSuccessCnt();
         this.manageId = entity.getManage().getManageId();
+        this.details = entity.getDetails().stream().map(PronunciationTrainingDetailsDTO::new).toList();
     }
-
-    // 발음 훈련 세부 항목들 (Details)
-    private List<PronunciationTrainingDetailsDTO> details; // 추가됨
 
     // Getters and Setters
     public Integer getPronunciationTrainingId() {
@@ -60,5 +59,13 @@ public class PronunciationTrainingDTO {
 
     public void setManageId(Integer manageId) {
         this.manageId = manageId;
+    }
+
+    public List<PronunciationTrainingDetailsDTO> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<PronunciationTrainingDetailsDTO> details) {
+        this.details = details;
     }
 }
